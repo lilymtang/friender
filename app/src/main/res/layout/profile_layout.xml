@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="320dp"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/profile_image" />
+
+    <TextView
+        android:id="@+id/person_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/person_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toEndOf="@+id/person_name"
+        app:layout_constraintTop_toTopOf="@+id/person_name"
+        app:layout_constraintVertical_bias="1.0"
+        android:text="24" />
+
+    <TextView
+        android:id="@+id/person_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="36dp"
+        android:text="Lily" />
+
+    <TextView
+        android:id="@+id/person_bio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/person_name"
+        app:layout_constraintTop_toBottomOf="@+id/person_name"
+        android:text="Bay Area grown and raised. I discovered backpacking in 2019 and it has become the main event of my weekend warrior antics. Ask me which backpacking permits I'm applying for this season! I also just love being active in general, whether it means trying to do more frequent runs or taking long walks to San Francisco bakeries to try all their pastries." />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexbox_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="15dp"
+        app:dividerDrawable="@drawable/divider"
+        app:flexWrap="wrap"
+        app:layout_constraintStart_toStartOf="@+id/person_name"
+        app:layout_constraintTop_toBottomOf="@+id/person_bio"
+        app:showDivider="middle">
+
+        <TextView
+            android:id="@+id/preferred_interest_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="backpacking" />
+
+        <TextView
+            android:id="@+id/preferred_interest_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="baking" />
+
+        <TextView
+            android:id="@+id/preferred_interest_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:text="photography" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_friend_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:text="Add Friend"
+        app:backgroundTint="@color/design_default_color_primary"
+        app:iconTint="@color/design_default_color_on_primary"
+        android:textColor="@color/design_default_color_on_primary"
+        app:icon="@drawable/ic_baseline_person_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
