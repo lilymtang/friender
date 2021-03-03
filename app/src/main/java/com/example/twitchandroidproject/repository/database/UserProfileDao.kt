@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.twitchandroidproject.repository.model.UserProfile
-import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface UserProfileDao {
@@ -14,7 +14,7 @@ interface UserProfileDao {
     suspend fun insertAll(users: List<UserProfile>)
 
     @Query("SELECT * FROM UserProfile")
-    fun getAll(): Flowable<List<UserProfile>>
+    fun getAll(): Observable<List<UserProfile>>
 
     @Query("SELECT * FROM UserProfile WHERE email = :email")
     suspend fun getByEmail(email: String): UserProfile
