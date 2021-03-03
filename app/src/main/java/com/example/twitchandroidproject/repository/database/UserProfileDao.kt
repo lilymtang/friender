@@ -5,14 +5,23 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.twitchandroidproject.repository.model.UserProfile
-import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface UserProfileDao {
 
-    @Query("SELECT * FROM UserProfile")
-    fun getUsers(): Flowable<List<UserProfile>>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<UserProfile>)
+
+    @Query("SELECT * FROM UserProfile")
+    fun getAll(): Observable<List<UserProfile>>
+
+    @Query("SELECT * FROM UserProfile WHERE email = :email")
+    suspend fun getByEmail(email: String): UserProfile
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun createOrUpdate(user: UserProfile)
+
+    @Query("DELETE FROM UserProfile WHERE email = :email")
+    suspend fun deleteByEmail(email: String)
 }
