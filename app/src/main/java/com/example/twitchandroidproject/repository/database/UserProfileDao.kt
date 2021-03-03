@@ -10,9 +10,18 @@ import io.reactivex.rxjava3.core.Flowable
 @Dao
 interface UserProfileDao {
 
-    @Query("SELECT * FROM UserProfile")
-    fun getUsers(): Flowable<List<UserProfile>>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<UserProfile>)
+
+    @Query("SELECT * FROM UserProfile")
+    fun getAll(): Flowable<List<UserProfile>>
+
+    @Query("SELECT * FROM UserProfile WHERE email = :email")
+    suspend fun getByEmail(email: String): UserProfile
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun createOrUpdate(user: UserProfile)
+
+    @Query("DELETE FROM UserProfile WHERE email = :email")
+    suspend fun deleteByEmail(email: String)
 }
