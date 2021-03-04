@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 
 class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val personName: TextView
         val personAge: TextView
@@ -22,7 +19,6 @@ class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<Home
         val personDistance: TextView
 
         init {
-            // Define click listener for the ViewHolder's View.
             personName = view.findViewById(R.id.person_name)
             personAge = view.findViewById(R.id.person_age)
             preferredInterest1 = view.findViewById(R.id.preferred_interest_1)
@@ -34,6 +30,7 @@ class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<Home
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
+
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.person_card, viewGroup, false)
@@ -41,7 +38,6 @@ class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<Home
 
         holder.itemView.setOnClickListener(
             fun (v: View) {
-//                Log.d("TAG", "position = " + holder.getAdapterPosition())
                 view.findNavController().navigate(R.id.action_HomeFragment_to_HomeProfileFragment)
             }
         );

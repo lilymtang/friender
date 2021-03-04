@@ -36,7 +36,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
@@ -55,7 +54,6 @@ class HomeFragment : Fragment() {
         recyclerView = view.findViewById(R.id.home_recycler)
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.addItemDecoration(MarginItemDecoration(2, 50, includeEdge = true))
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
 
         adapter = HomeAdapter(data)
         recyclerView.adapter = adapter
