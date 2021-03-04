@@ -41,13 +41,14 @@ object MainModule {
                 override fun onCreate(database: SupportSQLiteDatabase) {
                     super.onCreate(database)
 
-                    if (database is FrienderDatabase) {
-                        GlobalScope.launch {
-                            val userProfileCount = database.userProfileDao().getCount()
-                            if (userProfileCount == 0) {
-                                val userProfiles = TestDataUtil.createInitialUserProfiles()
-                                database.userProfileDao().insertAll(userProfiles)
-                            }
+                    val userProfileDao = (database as FrienderDatabase).userProfileDao()
+
+                    GlobalScope.launch {
+                        val userProfileCount = userProfileDao.getCount()
+                        if (userProfileCount == 0) {
+                            val userProfiles = TestDataUtil.createInitialUserProfiles()
+
+                            userProfileDao.insertAll(userProfiles)
                         }
                     }
                 }
