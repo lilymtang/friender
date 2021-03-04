@@ -15,7 +15,6 @@ import org.junit.Rule
 import org.junit.Test
 import java.util.Date
 import javax.inject.Inject
-import javax.inject.Named
 
 @HiltAndroidTest
 @SmallTest
@@ -28,7 +27,6 @@ class UserProfileDaoTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Inject
-    @Named("testDatabase")
     lateinit var database: FrienderDatabase
     private lateinit var userProfileDao: UserProfileDao
 
