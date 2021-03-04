@@ -2,6 +2,9 @@ package com.example.twitchandroidproject.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.twitchandroidproject.repository.TestDataUtil
 import com.example.twitchandroidproject.repository.api.GeolocationApiService
 import com.example.twitchandroidproject.repository.database.FrienderDatabase
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -10,6 +13,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -31,6 +36,22 @@ object MainModule {
             // wipe database in case of conflicts
             // todo: remove when database model is stabilized
             .fallbackToDestructiveMigration()
+            .addCallback(object : RoomDatabase.Callback() {
+                // on create prepopulate database with test data
+                override fun onCreate(database: SupportSQLiteDatabase) {
+                    super.onCreate(database)
+
+                    if (database is FrienderDatabase) {
+                        GlobalScope.launch {
+                            val userProfileCount = database.userProfileDao().getCount()
+                            if (userProfileCount == 0) {
+                                val userProfiles = TestDataUtil.createInitialUserProfiles()
+                                database.userProfileDao().insertAll(userProfiles)
+                            }
+                        }
+                    }
+                }
+            })
             .build()
     }
 
