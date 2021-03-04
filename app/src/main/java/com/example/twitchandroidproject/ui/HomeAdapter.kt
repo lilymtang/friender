@@ -42,7 +42,7 @@ class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<Home
         holder.itemView.setOnClickListener(
             fun (v: View) {
 //                Log.d("TAG", "position = " + holder.getAdapterPosition())
-                view.findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                view.findNavController().navigate(R.id.action_HomeFragment_to_HomeProfileFragment)
             }
         );
 

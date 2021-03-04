@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FirstFragmentViewModel @Inject constructor(
+class HomeFragmentViewModel @Inject constructor(
     private val frienderRepository: FrienderRepository
 ) : ViewModel() {
 

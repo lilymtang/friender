@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment(), View.OnClickListener {
+class HomeProfileFragment : Fragment(), View.OnClickListener {
     lateinit var fab: ExtendedFloatingActionButton
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class SecondFragment : Fragment(), View.OnClickListener {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.profile_layout, container, false)
+        return inflater.inflate(R.layout.home_profile_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
