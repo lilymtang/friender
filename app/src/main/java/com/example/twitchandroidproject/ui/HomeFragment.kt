@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
+import com.example.twitchandroidproject.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -29,6 +30,11 @@ data class Person(
 class HomeFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: HomeRecyclerViewAdapter
+    private var _binding: HomeFragmentBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     private val viewModel: HomeFragmentViewModel by viewModels()
 
@@ -36,7 +42,8 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.home_fragment, container, false)
+        _binding = HomeFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,11 +58,16 @@ class HomeFragment : Fragment() {
         )
 
         // Configure recycler view and adapter
-        recyclerView = view.findViewById(R.id.home_recycler)
+        recyclerView = binding.homeRecycler
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.addItemDecoration(MarginItemDecoration(2, 50, includeEdge = true))
 
         adapter = HomeRecyclerViewAdapter(data)
         recyclerView.adapter = adapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
