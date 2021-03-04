@@ -9,4 +9,14 @@
 
     <string name="hello_home_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="home_profile_fragment_age">24</string>
+    <string name="home_profile_fragment_name">Lily</string>
+    <string name="home_profile_fragment_bio">Bay Area grown and raised. I discovered backpacking in 2019 and it has become the main event of my weekend warrior antics. Ask me which backpacking permits I\'m applying for this season! I also just love being active in general, whether it means trying to do more frequent runs or taking long walks to San Francisco bakeries to try all their pastries.</string>
+    <string name="person_card_name">Lily</string>
+    <string name="person_card_age">24</string>
+    <string name="home_profile_fragment_fab">Add Friend</string>
+    <string name="home_profile_fragment_interest_1">backpacking</string>
+    <string name="home_profile_fragment_interest_2">baking</string>
+    <string name="home_profile_fragment_interest_3">photography</string>
+    <string name="person_card_distance">5 miles away</string>
 </resources>

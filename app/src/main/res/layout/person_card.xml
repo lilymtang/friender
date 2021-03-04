@@ -31,10 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
-            android:text="Lily"
+            android:text="@string/person_card_name"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
 
@@ -43,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="24"
-            android:textSize="16sp"
+            android:text="@string/person_card_age"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
             app:layout_constraintBottom_toBottomOf="@+id/person_name"
             app:layout_constraintStart_toEndOf="@+id/person_name"
             app:layout_constraintTop_toTopOf="@+id/person_name" />
@@ -53,7 +52,7 @@
             android:id="@+id/person_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5 miles away"
+            android:text="@string/person_card_distance"
             app:layout_constraintStart_toStartOf="@+id/person_name"
             app:layout_constraintTop_toBottomOf="@+id/person_name" />
 
@@ -81,7 +80,7 @@
                 android:paddingBottom="5dp"
                 tools:text="backpacking"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
             <TextView
                 android:id="@+id/preferred_interest_2"
@@ -94,7 +93,7 @@
                 android:paddingBottom="5dp"
                 tools:text="baking"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
             <TextView
                 android:id="@+id/preferred_interest_3"
@@ -107,7 +106,7 @@
                 android:paddingBottom="5dp"
                 tools:text="photography"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 
 
         </com.google.android.flexbox.FlexboxLayout>

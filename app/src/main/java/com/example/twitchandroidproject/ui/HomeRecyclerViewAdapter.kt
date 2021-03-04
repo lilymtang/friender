@@ -10,6 +10,7 @@ import com.example.twitchandroidproject.R
 
 class HomeRecyclerViewAdapter(private val people: Array<Person>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
 
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val personName: TextView
         val personAge: TextView
