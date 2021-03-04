@@ -65,9 +65,12 @@ class UserProfileDaoTest {
         userProfileDao.createOrUpdate(userProfile)
 
         // THEN
-        userProfileDao.getAll().test().assertValue { list ->
-            list.size == 1
-        }
+        userProfileDao
+            .getAll(listOf(UserProfile.UserProfileType.CURRENT_USER))
+            .test()
+            .assertValue { list ->
+                list.size == 1
+            }
     }
 
 }
