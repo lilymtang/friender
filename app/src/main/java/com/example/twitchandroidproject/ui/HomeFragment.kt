@@ -28,7 +28,7 @@ data class Person(
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
-    lateinit var adapter: HomeAdapter
+    lateinit var adapter: HomeRecyclerViewAdapter
 
     private val viewModel: HomeFragmentViewModel by viewModels()
 
@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.addItemDecoration(MarginItemDecoration(2, 50, includeEdge = true))
 
-        adapter = HomeAdapter(data)
+        adapter = HomeRecyclerViewAdapter(data)
         recyclerView.adapter = adapter
     }
 }

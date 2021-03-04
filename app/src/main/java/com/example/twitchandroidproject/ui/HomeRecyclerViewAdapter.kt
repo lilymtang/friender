@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 
-class HomeAdapter(private val people: Array<Person>) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter(private val people: Array<Person>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val personName: TextView
