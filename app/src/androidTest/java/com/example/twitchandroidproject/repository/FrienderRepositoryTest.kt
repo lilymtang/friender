@@ -44,12 +44,12 @@ class FrienderRepositoryTest {
 
     @Test
     @ExperimentalCoroutinesApi
-    fun testRetrieveAllUserProfiles() = runBlockingTest {
+    fun testRetrieveOtherUserProfiles() = runBlockingTest {
 
         // HAVING
         val allUserProfiles = TestDataUtil.createInitialUserProfiles()
         val allUserProfileCount = allUserProfiles
-            .filter { it.userProfileType != UserProfile.UserProfileType.CURRENT_USER }
+            .filter { it.userProfileType == UserProfile.UserProfileType.OTHER }
             .count()
 
         // WHEN
@@ -57,7 +57,7 @@ class FrienderRepositoryTest {
 
         // THEN
         repository
-            .getAllUsersNearby()
+            .getOtherUsersNearby()
             .test()
             .assertNoErrors()
             .assertValue { list ->
@@ -80,7 +80,7 @@ class FrienderRepositoryTest {
 
         // THEN
         repository
-            .getFriendsNearby()
+            .getFriends()
             .test()
             .assertNoErrors()
             .assertValue { list ->

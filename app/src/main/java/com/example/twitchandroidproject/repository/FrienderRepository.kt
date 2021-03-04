@@ -12,15 +12,14 @@ class FrienderRepository @Inject constructor(
     private val geolocationService: GeolocationApiService
 ) {
 
-    fun getAllUsersNearby() =
+    fun getOtherUsersNearby() =
         database.userProfileDao().getAll(
             userProfileTypes = listOf(
-                UserProfile.UserProfileType.FRIEND,
                 UserProfile.UserProfileType.OTHER
             )
         )
 
-    fun getFriendsNearby() =
+    fun getFriends() =
         database.userProfileDao()
             .getAll(userProfileTypes = listOf(UserProfile.UserProfileType.FRIEND))
 
