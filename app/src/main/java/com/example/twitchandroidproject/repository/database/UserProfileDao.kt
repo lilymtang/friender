@@ -13,8 +13,11 @@ interface UserProfileDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<UserProfile>)
 
-    @Query("SELECT * FROM UserProfile")
-    fun getAll(): Observable<List<UserProfile>>
+    @Query("SELECT * FROM UserProfile WHERE userProfileType IN (:userProfileTypes)")
+    fun getAll(userProfileTypes: List<UserProfile.UserProfileType>): Observable<List<UserProfile>>
+
+    @Query("SELECT COUNT(*) FROM UserProfile")
+    suspend fun getCount(): Int
 
     @Query("SELECT * FROM UserProfile WHERE email = :email")
     suspend fun getByEmail(email: String): UserProfile
