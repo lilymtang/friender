@@ -67,4 +67,14 @@ object MainModule {
 
         return retrofit.create(GeolocationApiService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideDispatcherProvider(): DispatcherProvider {
+        // return default dispatcher instance that will be used in production
+        // as we will need different dispatchers for tests
+        return object : DispatcherProvider {
+            // using default dispatchers as in DispatcherProvider
+        }
+    }
 }
