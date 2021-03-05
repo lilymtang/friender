@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.ActivityMainBinding
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         val bottomNavigationView = binding.bottomNavBar
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)!!.findNavController()
         bottomNavigationView.setupWithNavController(navController)
     }
 

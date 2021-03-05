@@ -6,7 +6,7 @@
     <string name="home_profile_fragment_label">Second Fragment</string>
 
     <!-- Strings used for bottom navigation bar destinations -->
-    <string name="bottom_nav_tab1">Home</string>
+    <string name="bottom_nav_tab1">Discover</string>
     <string name="bottom_nav_tab2">Friends</string>
     <string name="bottom_nav_tab3">Account</string>
 
@@ -14,7 +14,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="home_profile_fragment_age">24</string>
     <string name="home_profile_fragment_name">Lily</string>
-    <string name="home_profile_fragment_bio">Bay Area grown and raised. I discovered backpacking in 2019 and it has become the main event of my weekend warrior antics. Ask me which backpacking permits I\'m applying for this season! I also just love being active in general, whether it means trying to do more frequent runs or taking long walks to San Francisco bakeries to try all their pastries.</string>
+    <string name="home_profile_fragment_bio">Bay Area grown and raised. I discovered backpacking in 2019 and it has become the main event of my weekend warrior antics. Ask me which backpacking permits I\'m applying for this season! I also just love being active in general, whether it means trying to do more frequent runs or taking long walks to San Francisco bakeries to try all their pastries.
+    Bay Area grown and raised. I discovered backpacking in 2019 and it has become the main event of my weekend warrior antics. Ask me which backpacking permits I\'m applying for this season! I also just love being active in general, whether it means trying to do more frequent runs or taking long walks to San Francisco bakeries to try all their pastries.</string>
     <string name="person_card_name">Lily</string>
     <string name="person_card_age">24</string>
     <string name="home_profile_fragment_fab">Add Friend</string>
