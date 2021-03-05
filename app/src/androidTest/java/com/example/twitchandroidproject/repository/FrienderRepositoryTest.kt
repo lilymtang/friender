@@ -12,6 +12,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.Date
 import javax.inject.Inject
 
 @HiltAndroidTest
@@ -85,6 +86,54 @@ class FrienderRepositoryTest {
             .assertNoErrors()
             .assertValue { list ->
                 list.size == friendsProfileCount
+            }
+    }
+
+
+    @Test
+    @ExperimentalCoroutinesApi
+    fun testRetrieveCurrentUserProfile() = runBlockingTest {
+
+        // HAVING
+        val allUserProfiles = TestDataUtil.createInitialUserProfiles()
+
+        // WHEN
+        database.userProfileDao().insertAll(allUserProfiles)
+
+        // THEN
+        repository
+            .getCurrentUserProfile()
+            .test()
+            .assertNoErrors()
+            .assertValue { userProfile -> userProfile.userProfileType == UserProfile.UserProfileType.CURRENT_USER }
+    }
+
+    @Test
+    @ExperimentalCoroutinesApi
+    fun testSaveCurrentUserProfile() = runBlockingTest {
+        // HAVING
+        val currentUserProfile = UserProfile(
+            "test@email.com",
+            UserProfile.UserProfileType.CURRENT_USER,
+            false, // not available
+            "Test User",
+            Date(),
+            "test bio",
+            null, // no picture
+            listOf("interest1", "interest2", "interest3"),
+            listOf("preferredInterest1", "preferredInterest2", "preferredInterest3")
+        )
+
+        // WHEN
+        repository.saveCurrentUserProfile(currentUserProfile)
+
+        // THEN
+        repository
+            .getCurrentUserProfile()
+            .test()
+            .assertNoErrors()
+            .assertValue { userProfile ->
+                userProfile.equals(currentUserProfile)
             }
     }
 

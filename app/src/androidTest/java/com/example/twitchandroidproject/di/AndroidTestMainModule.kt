@@ -10,6 +10,8 @@ import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -47,5 +49,19 @@ object AndroidTestMainModule {
             .build()
 
         return retrofit.create(GeolocationApiService::class.java)
+    }
+
+    @ExperimentalCoroutinesApi
+    @Singleton
+    @Provides
+    fun provideDispatcherProvider(): DispatcherProvider {
+        // return test dispatcher provider that allow running coroutines on correct threads
+        // during testing
+        return object : DispatcherProvider {
+            override fun default() = TestCoroutineDispatcher()
+            override fun io() = TestCoroutineDispatcher()
+            override fun main() = TestCoroutineDispatcher()
+            override fun unconfined() = TestCoroutineDispatcher()
+        }
     }
 }
