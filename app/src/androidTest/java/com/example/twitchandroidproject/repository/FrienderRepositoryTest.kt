@@ -1,9 +1,13 @@
 package com.example.twitchandroidproject.repository
 
+import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
+import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.repository.database.FrienderDatabase
 import com.example.twitchandroidproject.repository.model.UserProfile
+import com.google.common.truth.Truth.assertThat
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -27,6 +31,10 @@ class FrienderRepositoryTest {
 
     @Inject
     lateinit var repository: FrienderRepository
+
+    @ApplicationContext
+    @Inject
+    lateinit var context: Context
 
     @Inject
     lateinit var database: FrienderDatabase
@@ -137,4 +145,19 @@ class FrienderRepositoryTest {
             }
     }
 
+    @Test
+    @ExperimentalCoroutinesApi
+    fun testRetrieveAvailableInterests() = runBlockingTest {
+
+        // HAVING
+        val allAvailableInterests =
+            context.resources.getStringArray(R.array.available_interests).toList().sorted()
+
+        // WHEN
+        val result = repository.getAvailableInterests()
+
+        // THEN
+        // Checking that available interests from resources contain the same elements as returned by Repository
+        assertThat(allAvailableInterests.toTypedArray().contentEquals(result.toTypedArray()))
+    }
 }
