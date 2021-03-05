@@ -3,9 +3,12 @@
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="home_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="home_profile_fragment_label">Second Fragment</string>
+
+    <!-- Strings used for bottom navigation bar destinations -->
+    <string name="bottom_nav_tab1">Home</string>
+    <string name="bottom_nav_tab2">Friends</string>
+    <string name="bottom_nav_tab3">Account</string>
 
     <string name="hello_home_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -19,4 +22,8 @@
     <string name="home_profile_fragment_interest_2">baking</string>
     <string name="home_profile_fragment_interest_3">photography</string>
     <string name="person_card_distance">5 miles away</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="friends_fragment_text">Hello friends fragment</string>
+    <string name="account_fragment_text">Hello account fragment</string>
 </resources>

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+
+        val bottomNavigationView = binding.bottomNavBar
+        val navController = findNavController(R.id.nav_host_fragment)
+        bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
