@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/FriendsFragment"
-        android:name="com.example.twitchandroidproject.FriendsFragment"
+        android:name="com.example.twitchandroidproject.ui.FriendsFragment"
         android:label="friends_fragment"
         tools:layout="@layout/friends_fragment" />
     <fragment
         android:id="@+id/AccountFragment"
-        android:name="com.example.twitchandroidproject.AccountFragment"
+        android:name="com.example.twitchandroidproject.ui.AccountFragment"
         android:label="account_fragment"
         tools:layout="@layout/account_fragment" />
 </navigation>
