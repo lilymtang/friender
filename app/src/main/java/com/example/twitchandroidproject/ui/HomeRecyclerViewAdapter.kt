@@ -15,10 +15,8 @@ class HomeRecyclerViewAdapter(private val people: Array<Person>) : RecyclerView.
 
     class ViewHolder(val binding: PersonCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(person: Person) {
-            with(binding) {
-                binding.person = person
-                binding.executePendingBindings()
-            }
+            binding.person = person
+            binding.executePendingBindings()
         }
     }
 
