@@ -20,6 +20,11 @@ class FrienderRepository @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) {
 
+    /**
+     * Gets other users nearby
+     *
+     * @return Observable list of UserProfiles
+     */
     fun getOtherUsersNearby() =
         database.userProfileDao().getAll(
             userProfileTypes = listOf(
@@ -27,15 +32,31 @@ class FrienderRepository @Inject constructor(
             )
         )
 
+    /**
+     * Gets friends nearby
+     *
+     * @return Observable list of UserProfiles
+     */
     fun getFriends() =
         database.userProfileDao()
             .getAll(userProfileTypes = listOf(UserProfile.UserProfileType.FRIEND))
 
+
+    /**
+     * Gets profile of the current user
+     *
+     * @return Observable UserProfile
+     */
     fun getCurrentUserProfile(): Observable<UserProfile> =
         (database.userProfileDao()
             .getAll(userProfileTypes = listOf(UserProfile.UserProfileType.CURRENT_USER)))
             .flatMapIterable { it }
 
+    /**
+     * Saves current user profile to the database
+     *
+     * @param userProfile user profile to save (profile type must be CURRENT_USER)
+     */
     suspend fun saveCurrentUserProfile(userProfile: UserProfile) =
         withContext(dispatcherProvider.io()) {
             if (userProfile.userProfileType == UserProfile.UserProfileType.CURRENT_USER) {
