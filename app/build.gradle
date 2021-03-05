@@ -11,6 +11,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     defaultConfig {
         applicationId "com.example.twitchandroidproject"
         minSdkVersion 29
@@ -106,4 +111,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.3.0'
+
+    // Layouts
+    implementation 'com.google.android:flexbox:2.0.1'
 }
