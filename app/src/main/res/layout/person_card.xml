@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="person"
             type="com.example.twitchandroidproject.ui.Person" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+    <androidx.cardview.widget.CardView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/CardView.Light"
-        app:cardCornerRadius="10dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -64,16 +64,16 @@
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/flexbox_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:paddingBottom="15dp"
-                app:flexWrap="wrap"
-                app:showDivider="middle"
                 app:dividerDrawable="@drawable/divider"
-                app:layout_constraintStart_toStartOf="@+id/person_name"
-                app:layout_constraintTop_toBottomOf="@+id/person_distance">
+                app:flexWrap="wrap"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/person_distance"
+                app:showDivider="middle">
 
                 <TextView
                     android:id="@+id/preferred_interest_1"
@@ -85,9 +85,9 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
                     android:text="@{person.preferredInterest1}"
-                    tools:text="backpacking"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                     android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+                    tools:text="backpacking" />
 
                 <TextView
                     android:id="@+id/preferred_interest_2"
@@ -99,9 +99,9 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
                     android:text="@{person.preferredInterest2}"
-                    tools:text="baking"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                     android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+                    tools:text="baking" />
 
                 <TextView
                     android:id="@+id/preferred_interest_3"
@@ -113,11 +113,9 @@
                     android:paddingRight="10dp"
                     android:paddingBottom="5dp"
                     android:text="@{person.preferredInterest3}"
-                    tools:text="photography"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                     android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
-
-
+                    tools:text="photography" />
             </com.google.android.flexbox.FlexboxLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
