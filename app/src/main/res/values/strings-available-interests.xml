@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- List of available interests that user can choose in profile section -->
+    <string-array name="available_interests">
+        <item>Photography</item>
+        <item>Drawing</item>
+        <item>Singing</item>
+        <item>Reading</item>
+        <item>Movies</item>
+        <item>Fishing</item>
+        <item>Video Games</item>
+        <item>Gardening</item>
+        <item>Walking</item>
+        <item>Fitness</item>
+        <item>Music</item>
+        <item>Hunting</item>
+        <item>Team Sports</item>
+        <item>Shopping</item>
+        <item>Traveling</item>
+        <item>Sewing</item>
+        <item>Golf</item>
+        <item>Yoga</item>
+        <item>Playing Music</item>
+        <item>Crafts</item>
+        <item>Bicycling</item>
+        <item>Baseball</item>
+        <item>Hiking</item>
+        <item>Cooking</item>
+        <item>Eating Out</item>
+        <item>Swimming</item>
+        <item>Camping</item>
+        <item>Skiing</item>
+        <item>Writing</item>
+        <item>Boating</item>
+        <item>Motorcycling</item>
+        <item>Animal Care</item>
+        <item>Bowling</item>
+        <item>Painting</item>
+        <item>Running</item>
+        <item>Dancing</item>
+        <item>Horseback Riding</item>
+        <item>Tennis</item>
+        <item>Theater</item>
+        <item>Beach</item>
+        <item>Volunteer Work</item>
+        <item>Philosophy</item>
+        <item>Astronomy</item>
+        <item>History</item>
+        <item>Basketball</item>
+        <item>Ice hockey</item>
+        <item>Soccer</item>
+        <item>Volleyball</item>
+        <item>American football</item>
+        <item>Surfing</item>
+        <item>Backpacking</item>
+        <item>Cricket</item>
+        <item>Rugby</item>
+    </string-array>
+</resources>
