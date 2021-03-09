@@ -10,12 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
 import com.example.twitchandroidproject.databinding.PersonCardBindingImpl
+import com.example.twitchandroidproject.repository.model.UserProfile
 
-class HomeRecyclerViewAdapter(private val people: Array<Person>) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter(viewModel: HomeFragmentViewModel) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+    var userProfiles = listOf<UserProfile>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class ViewHolder(val binding: PersonCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(person: Person) {
-            binding.person = person
+        fun bind(userProfile: UserProfile) {
+            binding.person = userProfile
             binding.executePendingBindings()
         }
     }
@@ -42,10 +48,10 @@ class HomeRecyclerViewAdapter(private val people: Array<Person>) : RecyclerView.
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.bind(people[position])
+        viewHolder.bind(userProfiles[position])
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = people.size
+    override fun getItemCount() = userProfiles.size
 
 }
