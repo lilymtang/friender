@@ -23,8 +23,12 @@ interface UserProfileDao {
     suspend fun getByEmail(email: String): UserProfile
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun createOrUpdate(user: UserProfile)
+    suspend fun updateUserProfile(user: UserProfile)
 
     @Query("DELETE FROM UserProfile WHERE email = :email")
     suspend fun deleteByEmail(email: String)
+
+    @Insert
+    suspend fun createUserProfile(user: UserProfile)
+
 }

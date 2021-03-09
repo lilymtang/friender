@@ -9,22 +9,24 @@ import java.util.Date
 @Entity
 data class UserProfile(
 
-    @PrimaryKey
-    val email: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+
+    var email: String,
 
     // userProfileType allows differentiating between different types of user profiles stored in the DB
-    val userProfileType: UserProfileType,
-    val isAvailableToHangout: Boolean,
+    var userProfileType: UserProfileType,
+    var isAvailableToHangout: Boolean,
 
-    val fullName: String,
-    val dateOfBirth: Date,
-    val bio: String,
+    var fullName: String,
+    var dateOfBirth: Date,
+    var bio: String,
 
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val profilePicture: Bitmap? = null,
+    var profilePicture: Bitmap? = null,
 
-    val interests: List<String>,
-    val preferredInterests: List<String>
+    var interests: List<String>,
+    var preferredInterests: List<String>
 
 ) {
 

@@ -45,22 +45,26 @@ class UserProfileDaoTest {
 
     @ExperimentalCoroutinesApi
     @Test
-    fun testCreateUserProfile() = runBlockingTest {
+    fun testUpdateUserProfile() = runBlockingTest {
         // GIVEN
         val userProfile = UserProfile(
-            "test@email.com",
-            UserProfile.UserProfileType.CURRENT_USER,
-            false, // not available
-            "Test User",
-            Date(),
-            "test bio",
-            null, // no picture
-            listOf("interest1", "interest2", "interest3"),
-            listOf("preferredInterest1", "preferredInterest2", "preferredInterest3")
+            email = "test@email.com",
+            userProfileType = UserProfile.UserProfileType.CURRENT_USER,
+            isAvailableToHangout = false, // not available
+            fullName = "Test User",
+            dateOfBirth = Date(),
+            bio = "test bio",
+            profilePicture = null, // no picture
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "preferredInterest1",
+                "preferredInterest2",
+                "preferredInterest3"
+            )
         )
 
         // WHEN
-        userProfileDao.createOrUpdate(userProfile)
+        userProfileDao.updateUserProfile(userProfile)
 
         // THEN
         userProfileDao
@@ -70,5 +74,4 @@ class UserProfileDaoTest {
                 list.size == 1
             }
     }
-
 }

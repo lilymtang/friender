@@ -11,12 +11,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.util.Date
 import javax.inject.Inject
 
 @HiltAndroidTest
@@ -79,6 +79,8 @@ class FrienderRepositoryTest {
     fun testRetrieveAllFriendsProfiles() = runBlockingTest {
 
         // HAVING
+        registerUserAndLogin()
+
         val allUserProfiles = TestDataUtil.createInitialUserProfiles()
         val friendsProfileCount = allUserProfiles
             .filter { it.userProfileType == UserProfile.UserProfileType.FRIEND }
@@ -103,14 +105,13 @@ class FrienderRepositoryTest {
     fun testRetrieveCurrentUserProfile() = runBlockingTest {
 
         // HAVING
-        val allUserProfiles = TestDataUtil.createInitialUserProfiles()
+        registerUserAndLogin()
 
         // WHEN
-        database.userProfileDao().insertAll(allUserProfiles)
-
-        // THEN
         repository
             .getCurrentUserProfile()
+
+            // THEN
             .test()
             .assertNoErrors()
             .assertValue { userProfile -> userProfile.userProfileType == UserProfile.UserProfileType.CURRENT_USER }
@@ -118,22 +119,18 @@ class FrienderRepositoryTest {
 
     @Test
     @ExperimentalCoroutinesApi
-    fun testSaveCurrentUserProfile() = runBlockingTest {
+    fun testUpdateCurrentUserProfile() = runBlockingTest {
+
         // HAVING
-        val currentUserProfile = UserProfile(
-            "test@email.com",
-            UserProfile.UserProfileType.CURRENT_USER,
-            false, // not available
-            "Test User",
-            Date(),
-            "test bio",
-            null, // no picture
-            listOf("interest1", "interest2", "interest3"),
-            listOf("preferredInterest1", "preferredInterest2", "preferredInterest3")
-        )
+        registerUserAndLogin()
+
+        val currentUserProfile = repository.getCurrentUserProfile().blockingFirst()
 
         // WHEN
-        repository.saveCurrentUserProfile(currentUserProfile)
+        val updatedBio = "updated bio"
+        currentUserProfile.bio = updatedBio
+
+        repository.updateCurrentUserProfile(currentUserProfile)
 
         // THEN
         repository
@@ -141,7 +138,7 @@ class FrienderRepositoryTest {
             .test()
             .assertNoErrors()
             .assertValue { userProfile ->
-                userProfile.equals(currentUserProfile)
+                userProfile.bio == updatedBio
             }
     }
 
@@ -150,6 +147,8 @@ class FrienderRepositoryTest {
     fun testRetrieveAvailableInterests() = runBlockingTest {
 
         // HAVING
+        registerUserAndLogin()
+
         val allAvailableInterests =
             context.resources.getStringArray(R.array.available_interests).toList().sorted()
 
@@ -159,5 +158,16 @@ class FrienderRepositoryTest {
         // THEN
         // Checking that available interests from resources contain the same elements as returned by Repository
         assertThat(allAvailableInterests.toTypedArray().contentEquals(result.toTypedArray()))
+    }
+
+    private fun registerUserAndLogin() = runBlocking {
+        val currentUserProfile = TestDataUtil.createCurrentUserProfile()
+
+        repository.registerNewUserAccount(
+            currentUserProfile.email, TestDataUtil.ACCOUNT_PASSWORD_CORRECT,
+            currentUserProfile
+        )
+
+        repository.logIn(currentUserProfile.email, TestDataUtil.ACCOUNT_PASSWORD_CORRECT)
     }
 }
