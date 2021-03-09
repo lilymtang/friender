@@ -68,11 +68,9 @@ class SecurityFrienderRepositoryTest {
             currentUserProfile
         )
 
-        repository.logIn(currentUserProfile.email, TestDataUtil.ACCOUNT_PASSWORD_CORRECT)
-
         // THEN
 
-        // no exception
+        repository.logIn(currentUserProfile.email, TestDataUtil.ACCOUNT_PASSWORD_CORRECT)
     }
 
     @Test
@@ -142,7 +140,7 @@ class SecurityFrienderRepositoryTest {
 
         // WHEN
 
-        // not logged ins
+        // not logged in
 
         // THEN
 
