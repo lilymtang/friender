@@ -25,10 +25,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object MainModule {
 
+    lateinit var frienderDatabase: FrienderDatabase
+
     @Singleton
     @Provides
     fun provideUserDatabase(@ApplicationContext applicationContext: Context): FrienderDatabase {
-        return Room.databaseBuilder(
+        frienderDatabase = Room.databaseBuilder(
             applicationContext,
             FrienderDatabase::class.java,
             "friender_database"
@@ -41,7 +43,7 @@ object MainModule {
                 override fun onCreate(database: SupportSQLiteDatabase) {
                     super.onCreate(database)
 
-                    val userProfileDao = (database as FrienderDatabase).userProfileDao()
+                    val userProfileDao = frienderDatabase.userProfileDao()
 
                     GlobalScope.launch {
                         val userProfileCount = userProfileDao.getCount()
@@ -54,6 +56,8 @@ object MainModule {
                 }
             })
             .build()
+
+        return frienderDatabase
     }
 
     @Singleton
