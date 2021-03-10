@@ -3,6 +3,7 @@ package com.example.twitchandroidproject.repository
 import com.example.twitchandroidproject.repository.model.UserProfile
 import java.util.Date
 
+
 /**
  * Object containing helper functions / constants for test data creation
  */
@@ -64,8 +65,8 @@ object TestDataUtil {
             email = "user5@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
-            fullName = "User5",
-            dateOfBirth = Date(),
+            fullName = "Lily",
+            dateOfBirth = Date(96,1,20),
             bio = "bio5",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -79,8 +80,8 @@ object TestDataUtil {
             email = "user6@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
-            fullName = "User6",
-            dateOfBirth = Date(),
+            fullName = "Moni",
+            dateOfBirth = Date(99,3,20),
             bio = "bio6",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),

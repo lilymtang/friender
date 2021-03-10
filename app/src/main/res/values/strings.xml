@@ -23,6 +23,7 @@
     <string name="home_profile_fragment_interest_2">baking</string>
     <string name="home_profile_fragment_interest_3">photography</string>
     <string name="person_card_distance">5 miles away</string>
+    <string name="person_name_template">%s,</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="friends_fragment_text">Hello friends fragment</string>
