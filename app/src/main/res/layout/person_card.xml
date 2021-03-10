@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 tools:text="24"
-                android:age="@{person.dateOfBirth}"
+                dateOfBirth="@{person.dateOfBirth}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintBaseline_toBaselineOf="@id/person_name"
                 app:layout_constraintStart_toEndOf="@+id/person_name"/>

@@ -9,7 +9,7 @@ import java.util.Date
 
 class BindingAdapters {
     companion object {
-        @BindingAdapter("android:age")
+        @BindingAdapter("dateOfBirth")
         @JvmStatic
         fun DateOfBirthToAge(view: TextView, dateOfBirth: Date) {
             val years =
