@@ -71,9 +71,9 @@ object TestDataUtil {
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
-                "preferredInterest1",
-                "preferredInterest2",
-                "preferredInterest3"
+                "backpacking",
+                "baking",
+                "photography"
             )
         ),
         UserProfile(
@@ -86,9 +86,69 @@ object TestDataUtil {
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
-                "preferredInterest1",
-                "preferredInterest2",
-                "preferredInterest3"
+                "art",
+                "yoga",
+                "running"
+            )
+        ),
+        UserProfile(
+            email = "user7@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Amy",
+            dateOfBirth = Date(92,3,20),
+            bio = "bio7",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "rock climbing",
+                "singing",
+                "piano"
+            )
+        ),
+        UserProfile(
+            email = "user8@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Lara Jean",
+            dateOfBirth = Date(93,1,20),
+            bio = "bio8",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "backpacking",
+                "baking",
+                "photography"
+            )
+        ),
+        UserProfile(
+            email = "user9@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Jonathan",
+            dateOfBirth = Date(100,3,20),
+            bio = "bio9",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "art",
+                "yoga",
+                "running"
+            )
+        ),
+        UserProfile(
+            email = "user10@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Christopher",
+            dateOfBirth = Date(84,3,20),
+            bio = "bio10",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "rock climbing",
+                "singing",
+                "piano"
             )
         )
     )
