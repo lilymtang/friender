@@ -1,18 +1,21 @@
 package com.example.twitchandroidproject.ui
 
-import android.text.Layout
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
-import com.example.twitchandroidproject.databinding.PersonCardBindingImpl
 import com.example.twitchandroidproject.repository.model.UserProfile
+import com.google.android.flexbox.FlexboxLayout
 
-class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter() : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+    lateinit var context: Context
     var userProfiles = listOf<UserProfile>()
         set(value) {
             field = value
@@ -40,6 +43,8 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.Vie
             }
         )
 
+        context = viewGroup.context
+
         return holder
     }
 
@@ -48,10 +53,37 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.Vie
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.bind(userProfiles[position])
+        var userProfile = userProfiles[position]
+        viewHolder.bind(userProfile)
+        viewHolder.itemView.setHasTransientState(true)
+        for (preferredInterest in userProfile.preferredInterests) {
+            viewHolder.itemView.findViewById<FlexboxLayout>(R.id.preferred_interests_layout).addView(createInterestBadge(preferredInterest))
+        }
+        viewHolder.itemView.setHasTransientState(false)
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = userProfiles.size
+
+    private fun createInterestBadge(interest: String): TextView {
+        val interestBadge = TextView(context)
+        interestBadge.text = interest
+        interestBadge.setTextAppearance(R.style.TextAppearance_MaterialComponents_Caption)
+        interestBadge.setTextColor(ContextCompat.getColor(context, R.color.white))
+        interestBadge.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        Log.d("TAG_", context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding).toString())
+        interestBadge.setPadding(
+            context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding),
+            context.resources.getDimensionPixelSize(R.dimen.badge_vert_padding),
+            context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding),
+            context.resources.getDimensionPixelSize(R.dimen.badge_vert_padding))
+        interestBadge.setBackgroundResource(R.drawable.badge)
+        return interestBadge
+    }
 
 }
