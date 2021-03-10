@@ -13,7 +13,9 @@ import javax.inject.Inject
 class HomeFragmentViewModel @Inject constructor(
         private val frienderRepository: FrienderRepository
 ) : ViewModel() {
-    val userProfiles: LiveData<List<UserProfile>> = LiveDataReactiveStreams.fromPublisher(frienderRepository
+    val userProfiles: LiveData<List<UserProfile>> = LiveDataReactiveStreams.fromPublisher(
+        frienderRepository
             .getOtherUsersNearby()
-            .toFlowable(BackpressureStrategy.BUFFER))
+            .toFlowable(BackpressureStrategy.BUFFER)
+    )
 }
