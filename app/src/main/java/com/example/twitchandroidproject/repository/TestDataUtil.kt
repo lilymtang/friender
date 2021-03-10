@@ -131,9 +131,7 @@ object TestDataUtil {
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
-                "art",
-                "yoga",
-                "running"
+                "art"
             )
         ),
         UserProfile(
@@ -147,8 +145,7 @@ object TestDataUtil {
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
                 "rock climbing",
-                "singing",
-                "piano"
+                "singing"
             )
         )
     )

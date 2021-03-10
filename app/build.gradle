@@ -76,7 +76,7 @@ dependencies {
     implementation 'androidx.room:room-rxjava3:2.3.0-beta02'
 
     // LiveData
-    implementation 'android.arch.lifecycle:reactivestreams:1.1.1'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.3.0'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

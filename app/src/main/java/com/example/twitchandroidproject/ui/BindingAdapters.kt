@@ -11,7 +11,7 @@ class BindingAdapters {
     companion object {
         @BindingAdapter("dateOfBirth")
         @JvmStatic
-        fun DateOfBirthToAge(view: TextView, dateOfBirth: Date) {
+        fun dateOfBirthToAge(view: TextView, dateOfBirth: Date) {
             val years =
                 ChronoUnit.YEARS.between(dateOfBirth.toInstant()
                     .atZone(ZoneId.systemDefault())

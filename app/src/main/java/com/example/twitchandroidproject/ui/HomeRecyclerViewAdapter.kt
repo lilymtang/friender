@@ -12,7 +12,7 @@ import com.example.twitchandroidproject.databinding.PersonCardBinding
 import com.example.twitchandroidproject.databinding.PersonCardBindingImpl
 import com.example.twitchandroidproject.repository.model.UserProfile
 
-class HomeRecyclerViewAdapter(viewModel: HomeFragmentViewModel) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     var userProfiles = listOf<UserProfile>()
         set(value) {
             field = value

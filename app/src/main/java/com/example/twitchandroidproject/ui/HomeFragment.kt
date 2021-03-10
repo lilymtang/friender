@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.addItemDecoration(MarginItemDecoration(2, 50, includeEdge = true))
 
-        adapter = HomeRecyclerViewAdapter(viewModel)
+        adapter = HomeRecyclerViewAdapter()
         recyclerView.adapter = adapter
 
         viewModel.userProfiles.observe(viewLifecycleOwner, Observer {
