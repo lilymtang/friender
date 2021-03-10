@@ -48,20 +48,12 @@
                 android:id="@+id/person_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 tools:text="24"
                 dateOfBirth="@{person.dateOfBirth}"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 app:layout_constraintBaseline_toBaselineOf="@id/person_name"
                 app:layout_constraintStart_toEndOf="@+id/person_name"/>
-
-<!--            <TextView-->
-<!--                android:id="@+id/person_distance"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@{person.distance}"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/person_name"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/person_name" />-->
 
             <com.google.android.flexbox.FlexboxLayout
                 android:id="@+id/flexbox_layout"
