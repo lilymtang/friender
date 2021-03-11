@@ -33,4 +33,13 @@
     <string name="error_message_not_registered_user">User with the provided email is not registered</string>
     <string name="error_message_incorrect_password">Incorrect Password</string>
     <string name="error_message_not_logged_in_user">User is not currently logged in</string>
+
+    <!-- Login Screen -->
+    <string name="login_fragment_hint_e_mail">Email address</string>
+    <string name="login_fragment_hint_password">Password</string>
+    <string name="login_fragment_enter_your_email_address">Enter your email address</string>
+    <string name="login_fragment_enter_your_password">Enter your Password</string>
+    <string name="login_fragment_sign_in">Sign in</string>
+    <string name="login_fragment_create_your_account">Create new account</string>
+    <string name="login_fragment_or">--Or--</string>
 </resources>
