@@ -21,7 +21,7 @@ class FrienderRepository @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) {
 
-    private var currentlyLoggedInUserEmail: String? = null
+    private var currentlyLoggedInUserEmail: String? = "lilyytang@gmail.com"
 
     /**
      * Gets other users nearby
