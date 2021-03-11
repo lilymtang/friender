@@ -1,28 +1,28 @@
 package com.example.twitchandroidproject.ui
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
-import com.google.android.flexbox.FlexboxLayout
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 
-class HomeRecyclerViewAdapter() : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     lateinit var context: Context
+    private lateinit var binding: PersonCardBinding
     var userProfiles = listOf<UserProfile>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    class ViewHolder(val binding: PersonCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: PersonCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(userProfile: UserProfile) {
             binding.person = userProfile
             binding.executePendingBindings()
@@ -34,7 +34,7 @@ class HomeRecyclerViewAdapter() : RecyclerView.Adapter<HomeRecyclerViewAdapter.V
 
         // Create a new view, which defines the UI of the list item
         val inflater = LayoutInflater.from(viewGroup.context)
-        val binding = PersonCardBinding.inflate(inflater)
+        binding = PersonCardBinding.inflate(inflater)
         val holder =  ViewHolder(binding)
 
         holder.itemView.setOnClickListener(
@@ -48,42 +48,27 @@ class HomeRecyclerViewAdapter() : RecyclerView.Adapter<HomeRecyclerViewAdapter.V
         return holder
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Replace the contents of the view holder with data at given position
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        var userProfile = userProfiles[position]
+        val userProfile = userProfiles[position]
         viewHolder.bind(userProfile)
-        viewHolder.itemView.setHasTransientState(true)
-        for (preferredInterest in userProfile.preferredInterests) {
-            viewHolder.itemView.findViewById<FlexboxLayout>(R.id.preferred_interests_layout).addView(createInterestBadge(preferredInterest))
-        }
-        viewHolder.itemView.setHasTransientState(false)
 
+        val chipGroup: ChipGroup = binding.preferredInterestsChipgroup
+        chipGroup.chipSpacingVertical = context.resources.getDimensionPixelSize(R.dimen.chip_vert_padding)
+
+        // For each preferred interest in list, create a preferred interest chip
+        for (preferredInterest in userProfile.preferredInterests) {
+            chipGroup.addView(createPreferredInterestChip(preferredInterest))
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = userProfiles.size
 
-    private fun createInterestBadge(interest: String): TextView {
-        val interestBadge = TextView(context)
+    private fun createPreferredInterestChip(interest: String): TextView {
+        val interestBadge = Chip(context)
         interestBadge.text = interest
-        interestBadge.setTextAppearance(R.style.TextAppearance_MaterialComponents_Caption)
-        interestBadge.setTextColor(ContextCompat.getColor(context, R.color.white))
-        interestBadge.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-
-        Log.d("TAG_", context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding).toString())
-        interestBadge.setPadding(
-            context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding),
-            context.resources.getDimensionPixelSize(R.dimen.badge_vert_padding),
-            context.resources.getDimensionPixelSize(R.dimen.badge_horiz_padding),
-            context.resources.getDimensionPixelSize(R.dimen.badge_vert_padding))
-        interestBadge.setBackgroundResource(R.drawable.badge)
+        interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
         return interestBadge
     }
-
 }

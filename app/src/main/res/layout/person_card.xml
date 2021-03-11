@@ -55,65 +55,16 @@
                 app:layout_constraintBaseline_toBaselineOf="@id/person_name"
                 app:layout_constraintStart_toEndOf="@+id/person_name"/>
 
-            <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/preferred_interests_layout"
-                android:layout_width="130dp"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/preferred_interests_chipgroup"
                 android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:paddingBottom="15dp"
-                app:dividerDrawable="@drawable/divider"
-                app:flexWrap="wrap"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/person_name"
-                app:showDivider="middle">
-
-
-<!--                <TextView-->
-<!--                    android:id="@+id/preferred_interest_1"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/badge"-->
-<!--                    android:paddingLeft="10dp"-->
-<!--                    android:paddingTop="5dp"-->
-<!--                    android:paddingRight="10dp"-->
-<!--                    android:paddingBottom="5dp"-->
-<!--                    preferredInterest="@{person.preferredInterests}"-->
-<!--                    index="@{0}"-->
-<!--                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    tools:text="backpacking" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/preferred_interest_2"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/badge"-->
-<!--                    android:paddingLeft="10dp"-->
-<!--                    android:paddingTop="5dp"-->
-<!--                    android:paddingRight="10dp"-->
-<!--                    android:paddingBottom="5dp"-->
-<!--                    preferredInterest="@{person.preferredInterests}"-->
-<!--                    index="@{1}"-->
-<!--                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    tools:text="baking" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/preferred_interest_3"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:background="@drawable/badge"-->
-<!--                    android:paddingLeft="10dp"-->
-<!--                    android:paddingTop="5dp"-->
-<!--                    android:paddingRight="10dp"-->
-<!--                    android:paddingBottom="5dp"-->
-<!--                    preferredInterest="@{person.preferredInterests}"-->
-<!--                    index="@{2}"-->
-<!--                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    tools:text="photography" />-->
-            </com.google.android.flexbox.FlexboxLayout>
+                app:layout_constraintTop_toBottomOf="@+id/person_name">
+            </com.google.android.material.chip.ChipGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
