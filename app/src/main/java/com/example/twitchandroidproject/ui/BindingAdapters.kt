@@ -18,11 +18,5 @@ class BindingAdapters {
                     .toLocalDateTime(), LocalDateTime.now())
             view.text = years.toString()
         }
-
-        @BindingAdapter(value=["preferredInterest", "index"])
-        @JvmStatic
-        fun preferredInterestListByIndex(view: TextView, preferredInterests: List<String>, i: Int) {
-            view.text = preferredInterests[i]
-        }
     }
 }
