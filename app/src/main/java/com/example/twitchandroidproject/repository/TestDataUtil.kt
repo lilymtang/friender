@@ -19,7 +19,7 @@ object TestDataUtil {
         UserProfile(
             email = "user2@email.com",
             userProfileType = UserProfile.UserProfileType.FRIEND,
-            isAvailableToHangout = true,
+            isAvailableToHangout = false,
             fullName = "User2",
             dateOfBirth = Date(),
             bio = "bio2",

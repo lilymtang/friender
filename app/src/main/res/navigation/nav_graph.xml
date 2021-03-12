@@ -27,7 +27,11 @@
         android:id="@+id/FriendsFragment"
         android:name="com.example.twitchandroidproject.ui.FriendsFragment"
         android:label="friends_fragment"
-        tools:layout="@layout/friends_fragment" />
+        tools:layout="@layout/friends_fragment" >
+        <action
+            android:id="@+id/action_FriendsFragment_to_HomeProfileFragment"
+            app:destination="@id/HomeProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/AccountFragment"
         android:name="com.example.twitchandroidproject.ui.account.AccountFragment"
