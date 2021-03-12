@@ -5,6 +5,9 @@ plugins {
 
     // DI
     id 'dagger.hilt.android.plugin'
+
+    // SafeArgs
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -55,6 +58,8 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
 

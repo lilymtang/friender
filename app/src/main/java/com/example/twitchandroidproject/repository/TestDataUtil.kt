@@ -1,5 +1,6 @@
 package com.example.twitchandroidproject.repository
 
+import com.example.twitchandroidproject.repository.model.UserAccount
 import com.example.twitchandroidproject.repository.model.UserProfile
 import java.util.Date
 
@@ -166,4 +167,7 @@ object TestDataUtil {
                 "preferredInterest3"
             )
         )
+
+    fun createInitialUserAccount() =
+        UserAccount(email = "user1@email.com", password = "password1")
 }

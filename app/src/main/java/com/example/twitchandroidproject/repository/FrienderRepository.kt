@@ -1,6 +1,9 @@
 package com.example.twitchandroidproject.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.di.DispatcherProvider
 import com.example.twitchandroidproject.repository.api.GeolocationApiService
@@ -21,8 +24,16 @@ class FrienderRepository @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) {
 
-    // TODO: Change value back to null once login is implemented
-    private var currentlyLoggedInUserEmail: String? = "lilyytang@gmail.com"
+    private var currentlyLoggedInUserEmail = MutableLiveData<String?>(null)
+
+    /**
+     * Allows observing current user log in status
+     */
+    // TODO: switch to RxJava API in future
+    val isUserLoggedIn: LiveData<Boolean> =
+        Transformations.map(currentlyLoggedInUserEmail) { loggedInUserEmail ->
+            loggedInUserEmail != null
+        }
 
     /**
      * Gets other users nearby
@@ -90,7 +101,9 @@ class FrienderRepository @Inject constructor(
                 throw IllegalArgumentException(context.getString(R.string.error_message_incorrect_password))
             }
 
-            currentlyLoggedInUserEmail = email
+            withContext(dispatcherProvider.main()) {
+                currentlyLoggedInUserEmail.value = email
+            }
         }
     }
 
@@ -144,7 +157,7 @@ class FrienderRepository @Inject constructor(
      * @throws IllegalStateException in case if user is not logged in
      */
     private fun throwErrorIfNotLoggedIn() {
-        if (currentlyLoggedInUserEmail == null) {
+        if (currentlyLoggedInUserEmail.value == null) {
             throw IllegalStateException(context.getString(R.string.error_message_not_logged_in_user))
         }
     }
