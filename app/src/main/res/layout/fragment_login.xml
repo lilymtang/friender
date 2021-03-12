@@ -19,20 +19,20 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/emailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_fragment_enter_your_email_address"
-            android:textAppearance="?textAppearanceHeadline5" />
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:contentDescription="@string/login_fragment_content_description_application_logo"
+            android:src="@drawable/ic_login_logo" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailText"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_components"
             android:hint="@string/login_fragment_hint_e_mail"
+            app:boxBackgroundColor="@android:color/transparent"
             app:errorEnabled="true"
             app:errorMessage="@{viewModel.emailErrorMessage}">
 
@@ -40,25 +40,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@={viewModel.email}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/passwordLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_components"
-            android:text="@string/login_fragment_enter_your_password"
-            android:textAppearance="?textAppearanceHeadline5" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passwordText"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_components"
             android:hint="@string/login_fragment_hint_password"
+            app:boxBackgroundColor="@android:color/transparent"
             app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:errorMessage="@{viewModel.passwordErrorMessage}">
@@ -67,6 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
                 android:text="@={viewModel.password}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +72,6 @@
             android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_button_extra_side"
             android:layout_marginTop="@dimen/margin_components"
             android:enabled="@{viewModel.signInButtonEnabled}"
             android:onClick="@{() -> viewModel.login()}"
@@ -86,15 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_components"
-            android:text="@string/login_fragment_or"
+            android:text="@string/login_fragment_label_no_account"
             android:textAlignment="center"
-            android:textAppearance="?textAppearanceHeadline6" />
+            android:textAppearance="?textAppearanceBody1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/createNewAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_button_extra_side"
             android:layout_marginTop="@dimen/margin_components"
             android:text="@string/login_fragment_create_your_account" />
 

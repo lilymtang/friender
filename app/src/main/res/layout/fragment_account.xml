@@ -15,7 +15,6 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_button_extra_side"
             android:layout_marginTop="@dimen/margin_components"
             android:text="@string/login_fragment_sign_in" />
 

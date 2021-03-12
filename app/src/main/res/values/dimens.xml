@@ -5,6 +5,4 @@
     <dimen name="margin_side">16dp</dimen>
     <!-- Margin to be used between components -->
     <dimen name="margin_components">16dp</dimen>
-    <!-- Extra horizontal margin for buttons relative to side margin -->
-    <dimen name="margin_button_extra_side">24dp</dimen>
 </resources>

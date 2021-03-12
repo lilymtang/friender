@@ -38,9 +38,8 @@
     <!-- Login Screen -->
     <string name="login_fragment_hint_e_mail">Email address</string>
     <string name="login_fragment_hint_password">Password</string>
-    <string name="login_fragment_enter_your_email_address">Enter your email address</string>
-    <string name="login_fragment_enter_your_password">Enter your Password</string>
     <string name="login_fragment_sign_in">Sign in</string>
     <string name="login_fragment_create_your_account">Create new account</string>
-    <string name="login_fragment_or">--Or--</string>
+    <string name="login_fragment_label_no_account">No account yet?</string>
+    <string name="login_fragment_content_description_application_logo">Application Logo</string>
 </resources>
