@@ -21,6 +21,7 @@ class FrienderRepository @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) {
 
+    // TODO: Change value back to null once login is implemented
     private var currentlyLoggedInUserEmail: String? = "lilyytang@gmail.com"
 
     /**
