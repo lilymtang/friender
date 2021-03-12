@@ -44,12 +44,15 @@ object MainModule {
                     super.onCreate(database)
 
                     val userProfileDao = frienderDatabase.userProfileDao()
+                    val userAccountDao = frienderDatabase.userAccountDao()
 
                     GlobalScope.launch {
                         val userProfileCount = userProfileDao.getCount()
                         if (userProfileCount == 0) {
-                            val userProfiles = TestDataUtil.createInitialUserProfiles()
+                            val userAccount = TestDataUtil.createInitialUserAccount()
+                            userAccountDao.create(userAccount)
 
+                            val userProfiles = TestDataUtil.createInitialUserProfiles()
                             userProfileDao.insertAll(userProfiles)
                         }
                     }
