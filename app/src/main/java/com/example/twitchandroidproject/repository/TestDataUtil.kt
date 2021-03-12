@@ -3,6 +3,7 @@ package com.example.twitchandroidproject.repository
 import com.example.twitchandroidproject.repository.model.UserProfile
 import java.util.Date
 
+
 /**
  * Object containing helper functions / constants for test data creation
  */
@@ -64,30 +65,87 @@ object TestDataUtil {
             email = "user5@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
-            fullName = "User5",
-            dateOfBirth = Date(),
+            fullName = "Lily",
+            dateOfBirth = Date(96,1,20),
             bio = "bio5",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
-                "preferredInterest1",
-                "preferredInterest2",
-                "preferredInterest3"
+                "backpacking",
+                "baking",
+                "photography"
             )
         ),
         UserProfile(
             email = "user6@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
-            fullName = "User6",
-            dateOfBirth = Date(),
+            fullName = "Moni",
+            dateOfBirth = Date(99,3,20),
             bio = "bio6",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
-                "preferredInterest1",
-                "preferredInterest2",
-                "preferredInterest3"
+                "art",
+                "yoga",
+                "running"
+            )
+        ),
+        UserProfile(
+            email = "user7@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Amy",
+            dateOfBirth = Date(92,3,20),
+            bio = "bio7",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "rock climbing",
+                "singing",
+                "piano"
+            )
+        ),
+        UserProfile(
+            email = "user8@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Lara Jean",
+            dateOfBirth = Date(93,1,20),
+            bio = "bio8",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "backpacking",
+                "baking",
+                "photography"
+            )
+        ),
+        UserProfile(
+            email = "user9@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Jonathan",
+            dateOfBirth = Date(100,3,20),
+            bio = "bio9",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "art"
+            )
+        ),
+        UserProfile(
+            email = "user10@email.com",
+            userProfileType = UserProfile.UserProfileType.OTHER,
+            isAvailableToHangout = true,
+            fullName = "Christopher",
+            dateOfBirth = Date(84,3,20),
+            bio = "bio10",
+            profilePicture = null,
+            interests = listOf("interest1", "interest2", "interest3"),
+            preferredInterests = listOf(
+                "rock climbing",
+                "singing"
             )
         )
     )

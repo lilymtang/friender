@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.HomeProfileFragmentBinding
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
@@ -13,7 +12,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class HomeProfileFragment : Fragment(), View.OnClickListener {
-    lateinit var fab: ExtendedFloatingActionButton
+    private lateinit var fab: ExtendedFloatingActionButton
     private var _binding: HomeProfileFragmentBinding? = null
 
     private val binding get() = _binding!!
