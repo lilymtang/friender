@@ -16,23 +16,14 @@ class ProfileFragmentViewModel @Inject constructor(
         private val frienderRepository: FrienderRepository,
         state: SavedStateHandle
 ) : ViewModel() {
-    private val userProfile: LiveData<UserProfile> = loadUserProfile(state.get("userId")!!)
+    private val userProfile: LiveData<UserProfile>
 
-    private val isVisible: LiveData<Int>
-        get() {
-            return when(userProfile.value?.userProfileType) {
-                UserProfile.UserProfileType.OTHER -> MutableLiveData(View.VISIBLE)
-                UserProfile.UserProfileType.FRIEND -> MutableLiveData(View.VISIBLE)
-                else -> MutableLiveData(View.INVISIBLE)
-            }
-        }
+    init {
+        userProfile = loadUserProfile(state.get("userId")!!)
+    }
 
     fun getUserProfile(): LiveData<UserProfile> {
         return userProfile
-    }
-
-    fun getFloatingActionButtonVisibility() : LiveData<Int> {
-        return isVisible
     }
 
     private fun loadUserProfile(userId: Long): LiveData<UserProfile> {

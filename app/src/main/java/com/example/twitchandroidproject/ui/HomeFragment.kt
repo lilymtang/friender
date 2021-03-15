@@ -62,7 +62,6 @@ class HomeFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener 
 
     override fun onProfileClick(position: Int) {
         val userIdBundle = bundleOf("userId" to viewModel.getUserProfiles().value!![position].id)
-        Log.d("TAG", "Pass userId on click: " + userIdBundle)
         binding.root.findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment, userIdBundle)
     }
 }
