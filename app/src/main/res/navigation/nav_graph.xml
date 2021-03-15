@@ -11,16 +11,20 @@
         tools:layout="@layout/home_fragment">
 
         <action
-            android:id="@+id/action_HomeFragment_to_HomeProfileFragment"
-            app:destination="@id/HomeProfileFragment" />
+            android:id="@+id/action_HomeFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment">
+            <argument
+                android:name="userId"
+                app:argType="float" />
+        </action>
     </fragment>
     <fragment
-        android:id="@+id/HomeProfileFragment"
-        android:name="com.example.twitchandroidproject.ui.HomeProfileFragment"
-        tools:layout="@layout/home_profile_fragment">
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.twitchandroidproject.ui.ProfileFragment"
+        tools:layout="@layout/profile_fragment">
 
         <action
-            android:id="@+id/action_HomeProfileFragment_to_HomeFragment"
+            android:id="@+id/action_ProfileFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
     <fragment
