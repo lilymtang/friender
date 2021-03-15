@@ -31,10 +31,23 @@
         android:id="@+id/FriendsFragment"
         android:name="com.example.twitchandroidproject.ui.FriendsFragment"
         android:label="friends_fragment"
-        tools:layout="@layout/friends_fragment" />
+        tools:layout="@layout/friends_fragment" >
+        <action
+            android:id="@+id/action_FriendsFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/AccountFragment"
-        android:name="com.example.twitchandroidproject.ui.AccountFragment"
+        android:name="com.example.twitchandroidproject.ui.account.AccountFragment"
         android:label="account_fragment"
-        tools:layout="@layout/account_fragment" />
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_AccountFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.example.twitchandroidproject.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 </navigation>
