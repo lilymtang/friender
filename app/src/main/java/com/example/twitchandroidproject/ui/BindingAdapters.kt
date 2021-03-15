@@ -1,5 +1,7 @@
 package com.example.twitchandroidproject.ui
 
+import android.graphics.Bitmap
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputLayout
@@ -29,6 +31,15 @@ class BindingAdapters {
         @JvmStatic
         fun setErrorMessage(textInputLayout: TextInputLayout, errorMessage: String?) {
             textInputLayout.error = errorMessage
+        }
+
+
+        @BindingAdapter("profileImage")
+        @JvmStatic
+        fun setProfileImage(imageView: ImageView, profileImage: Bitmap?) {
+            profileImage?.let {
+                imageView.setImageBitmap(profileImage)
+            }
         }
     }
 }

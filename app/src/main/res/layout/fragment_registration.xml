@@ -180,6 +180,7 @@
                 android:id="@+id/edit_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:profileImage="@{viewModel.profilePicture}"
                 tools:src="@tools:sample/avatars" />
 
         </androidx.cardview.widget.CardView>

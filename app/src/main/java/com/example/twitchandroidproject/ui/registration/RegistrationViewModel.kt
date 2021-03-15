@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.repository.FrienderRepository
 import com.example.twitchandroidproject.repository.model.UserProfile
+import com.example.twitchandroidproject.ui.utils.createRandomProfilePicture
 import com.example.twitchandroidproject.ui.utils.dateOfBirthValidationObserver
 import com.example.twitchandroidproject.ui.utils.notBlankValidationObserver
 import com.example.twitchandroidproject.ui.utils.transformationsMapAll
@@ -16,11 +17,16 @@ import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
+
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     application: Application,
     private val frienderRepository: FrienderRepository,
 ) : AndroidViewModel(application) {
+
+    // initialize profile image with random color until actual picture is profiled so that
+    // user always an image even if user did not provided one
+    val profilePicture = MutableLiveData(createRandomProfilePicture())
 
     val displayName = MutableLiveData<String?>(null)
     val displayNameValidationError = notBlankValidationObserver(application, displayName)
@@ -119,6 +125,7 @@ class RegistrationViewModel @Inject constructor(
                         fullName = displayName.value!!,
                         dateOfBirth = dateOfBirth.value!!,
                         bio = bio.value!!,
+                        profilePicture = profilePicture.value,
 
                         // we are not capturing interests / preferred interests
                         // during registration process
