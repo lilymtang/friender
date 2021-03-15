@@ -1,8 +1,6 @@
 package com.example.twitchandroidproject.ui
 
-import android.view.View
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.toLiveData
