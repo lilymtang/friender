@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.eventLoginSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
-            shouldNavigate?.let {
+            if (shouldNavigate) {
                 // TODO: Navigate back to the screen from where login was initiated
 
                 // Reset state to make sure we only navigate once, even if the device

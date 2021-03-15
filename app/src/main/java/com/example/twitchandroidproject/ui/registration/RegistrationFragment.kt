@@ -62,7 +62,7 @@ class RegistrationFragment : Fragment() {
         }
 
         viewModel.eventRegistrationSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
-            shouldNavigate?.let {
+            if (shouldNavigate) {
                 // TODO: Navigate back to Home screen
 
                 // Reset state to make sure we only navigate once, even if the device
