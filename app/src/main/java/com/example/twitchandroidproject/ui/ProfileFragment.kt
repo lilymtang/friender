@@ -48,7 +48,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         viewModel.getUserProfile().observe(viewLifecycleOwner, Observer { userProfile ->
             when(userProfile.userProfileType) {
                 UserProfile.UserProfileType.OTHER -> fab.show()
-                UserProfile.UserProfileType.FRIEND -> fab.show()
                 else -> fab.hide()
             }
 
