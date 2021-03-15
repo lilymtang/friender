@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,11 @@ class LoginFragment : Fragment() {
                 viewModel.markEventLoginSuccessfulHandled()
             }
         })
+
+        binding.createNewAccountButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(LoginFragmentDirections.actionLoginFragmentToRegistrationFragment())
+        }
 
         return binding.root
     }

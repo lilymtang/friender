@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.twitchandroidproject.ui.registration.RegistrationViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MainActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="noScroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_side"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="@dimen/margin_side"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_display_name"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.displayNameValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.displayName}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_date_of_birth"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.dateOfBirthValidatorError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateOfBirthField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:date="@{viewModel.dateOfBirth}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/emailText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_email"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.emailValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/passwordText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_password"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.passwordValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.password}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/confirmPasswordText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_confirm_password"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.confirmedPasswordValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.confirmedPassword}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bioText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_bio"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.bioValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.bio}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/getStartedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:enabled="@{viewModel.getStartedButtonEnabled}"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.register()}"
+                    android:text="@string/registration_fragment_get_started" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@null"
+            app:cardCornerRadius="64dp"
+            app:cardElevation="10dp"
+            app:layout_anchor="@+id/app_bar"
+            app:layout_anchorGravity="bottom|center">
+
+            <ImageView
+                android:id="@+id/edit_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
