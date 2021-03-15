@@ -58,11 +58,12 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/preferred_interests_chipgroup"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_width="0dp"
                 android:layout_marginTop="15dp"
                 android:paddingBottom="15dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintStart_toStartOf="@id/person_name"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/person_name">
             </com.google.android.material.chip.ChipGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>

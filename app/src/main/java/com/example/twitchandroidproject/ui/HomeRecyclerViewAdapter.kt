@@ -1,10 +1,16 @@
 package com.example.twitchandroidproject.ui
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
@@ -72,17 +78,30 @@ class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener
 
         // For each preferred interest in list, create a preferred interest chip
         for (preferredInterest in userProfile.preferredInterests) {
-            chipGroup.addView(createPreferredInterestChip(preferredInterest))
+            chipGroup.addView(createInterestChip(preferredInterest,
+                context.getColorFromAttr(R.attr.preferredInterestColor)
+            ))
         }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = userProfiles.size
 
-    private fun createPreferredInterestChip(interest: String): TextView {
+    private fun createInterestChip(interest: String, chipColor: Int): TextView {
         val interestBadge = Chip(context)
         interestBadge.text = interest
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
+        interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge
+    }
+
+    @ColorInt
+    fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
     }
 }
