@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,7 +18,6 @@ import com.example.twitchandroidproject.databinding.ProfileFragmentBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -25,9 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), View.OnClickListener {
-    private lateinit var fab: ExtendedFloatingActionButton
-    private var userId: Long? = null
     private val viewModel: ProfileFragmentViewModel by viewModels()
+    lateinit var chipGroup: ChipGroup
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -36,28 +35,32 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         val binding = ProfileFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.profileFragment = this
 
-        fab = binding.profileFab
-        fab.setOnClickListener(this)
+        chipGroup = binding.profileInterestsChipgroup
 
         viewModel.userProfile.observe(viewLifecycleOwner, Observer { userProfile ->
             when(userProfile.userProfileType) {
-                UserProfile.UserProfileType.OTHER -> fab.show()
-                else -> fab.hide()
+                UserProfile.UserProfileType.OTHER -> binding.profileFab.show()
+                else -> binding.profileFab.hide()
             }
 
-            addChipGroup(binding, userProfile)
+            // Populate chipGroup if it is empty
+            if(chipGroup.size == 0) {
+                addChipGroup(userProfile)
+            }
         })
+
+        viewModel.userProfile
 
         return binding.root
     }
 
     override fun onClick(v: View) {
-        //TODO: Implement button behavior
+        viewModel.addFriend()
     }
 
-    private fun addChipGroup(binding: ProfileFragmentBinding, userProfile: UserProfile) {
-        val chipGroup: ChipGroup = binding.profileInterestsChipgroup
+    private fun addChipGroup(userProfile: UserProfile) {
         chipGroup.chipSpacingVertical = requireContext().resources.getDimensionPixelSize(R.dimen.chip_vert_padding)
 
         // For each preferred interest in list, create a preferred interest chip
