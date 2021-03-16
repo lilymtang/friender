@@ -14,15 +14,7 @@ class ProfileFragmentViewModel @Inject constructor(
         private val frienderRepository: FrienderRepository,
         state: SavedStateHandle
 ) : ViewModel() {
-    private val userProfile: LiveData<UserProfile>
-
-    init {
-        userProfile = loadUserProfile(state.get("userId")!!)
-    }
-
-    fun getUserProfile(): LiveData<UserProfile> {
-        return userProfile
-    }
+    val userProfile: LiveData<UserProfile> = loadUserProfile(state.get("userId")!!)
 
     private fun loadUserProfile(userId: Long): LiveData<UserProfile> {
         return frienderRepository.getUserById(userId).toLiveData()

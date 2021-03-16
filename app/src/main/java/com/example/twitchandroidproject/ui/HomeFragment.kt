@@ -45,7 +45,7 @@ class HomeFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener 
         adapter = HomeRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
 
-        viewModel.getUserProfiles().observe(viewLifecycleOwner, Observer {
+        viewModel.userProfiles.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.userProfiles = it
             }
@@ -60,7 +60,7 @@ class HomeFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener 
     }
 
     override fun onProfileClick(position: Int) {
-        val userIdBundle = bundleOf("userId" to viewModel.getUserProfiles().value!![position].id)
+        val userIdBundle = bundleOf("userId" to viewModel.userProfiles.value!![position].id)
         binding.root.findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment, userIdBundle)
     }
 }

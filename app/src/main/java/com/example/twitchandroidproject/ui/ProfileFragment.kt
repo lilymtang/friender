@@ -40,7 +40,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         fab = binding.profileFab
         fab.setOnClickListener(this)
 
-        viewModel.getUserProfile().observe(viewLifecycleOwner, Observer { userProfile ->
+        viewModel.userProfile.observe(viewLifecycleOwner, Observer { userProfile ->
             when(userProfile.userProfileType) {
                 UserProfile.UserProfileType.OTHER -> fab.show()
                 else -> fab.hide()

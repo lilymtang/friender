@@ -38,7 +38,7 @@ class FrienderRepository @Inject constructor(
     /**
      * Gets other users nearby
      * @param id user's id
-     * @return Observable UserProfile
+     * @return Flowable UserProfile
      */
     fun getUserById(id: Long) = database.userProfileDao().getById(id)
 
