@@ -16,7 +16,13 @@ class BindingAdapters {
     companion object {
         @BindingAdapter("dateOfBirth")
         @JvmStatic
-        fun dateOfBirthToAge(view: TextView, dateOfBirth: Date) {
+        fun dateOfBirthToAge(view: TextView, dateOfBirth: Date?) {
+            // LiveData is null initially because of async Room call in ProfileFragmentViewModel
+            if(dateOfBirth == null){
+                view.text = Date().toString()
+                return
+            }
+
             val years =
                 ChronoUnit.YEARS.between(
                     dateOfBirth.toInstant()

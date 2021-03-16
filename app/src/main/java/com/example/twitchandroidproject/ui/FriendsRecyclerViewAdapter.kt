@@ -4,13 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FriendRowBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
 
-class FriendsRecyclerViewAdapter : RecyclerView.Adapter<FriendsRecyclerViewAdapter.ViewHolder>() {
+class FriendsRecyclerViewAdapter(var onProfileClickListener: HomeRecyclerViewAdapter.OnProfileClickListener) : RecyclerView.Adapter<FriendsRecyclerViewAdapter.ViewHolder>() {
     lateinit var context: Context
     private lateinit var binding: FriendRowBinding
     var userProfiles = listOf<UserProfile>()
@@ -19,10 +17,23 @@ class FriendsRecyclerViewAdapter : RecyclerView.Adapter<FriendsRecyclerViewAdapt
             notifyDataSetChanged()
         }
 
-    class ViewHolder(private val binding: FriendRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(itemView: View,
+                     private val binding: FriendRowBinding,
+                     private val onProfileClickListener: HomeRecyclerViewAdapter.OnProfileClickListener)
+        : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        // Set click listener to this class
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         fun bind(userProfile: UserProfile) {
             binding.person = userProfile
             binding.executePendingBindings()
+        }
+
+        // onClick for this class will call onProfileClick and pass adapterPosition
+        override fun onClick(v: View) {
+            onProfileClickListener.onProfileClick(adapterPosition)
         }
     }
 
@@ -32,13 +43,7 @@ class FriendsRecyclerViewAdapter : RecyclerView.Adapter<FriendsRecyclerViewAdapt
         // Create a new view, which defines the UI of the list item
         val inflater = LayoutInflater.from(viewGroup.context)
         binding = FriendRowBinding.inflate(inflater)
-        val holder =  ViewHolder(binding)
-
-        holder.itemView.setOnClickListener(
-            fun (v: View) {
-                binding.root.findNavController().navigate(R.id.action_FriendsFragment_to_HomeProfileFragment)
-            }
-        )
+        val holder = ViewHolder(binding.root, binding, onProfileClickListener)
 
         context = viewGroup.context
 

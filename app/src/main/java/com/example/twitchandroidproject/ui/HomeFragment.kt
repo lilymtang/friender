@@ -1,15 +1,17 @@
 package com.example.twitchandroidproject.ui
 
-import MarginItemDecoration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: HomeRecyclerViewAdapter
     private var _binding: HomeFragmentBinding? = null
@@ -40,7 +42,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(activity, 2)
         recyclerView.addItemDecoration(MarginItemDecoration(2, 50, includeEdge = true))
 
-        adapter = HomeRecyclerViewAdapter()
+        adapter = HomeRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
 
         viewModel.userProfiles.observe(viewLifecycleOwner, Observer {
@@ -55,5 +57,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onProfileClick(position: Int) {
+        val userIdBundle = bundleOf("userId" to viewModel.userProfiles.value!![position].id)
+        binding.root.findNavController().navigate(R.id.action_HomeFragment_to_ProfileFragment, userIdBundle)
     }
 }

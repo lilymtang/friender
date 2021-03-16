@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.twitchandroidproject.repository.model.UserProfile
+import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 
 @Dao
@@ -18,6 +19,9 @@ interface UserProfileDao {
 
     @Query("SELECT COUNT(*) FROM UserProfile")
     suspend fun getCount(): Int
+
+    @Query("SELECT * FROM UserProfile WHERE id = :id")
+    fun getById(id: Long): Flowable<UserProfile>
 
     @Query("SELECT * FROM UserProfile WHERE email = :email")
     suspend fun getByEmail(email: String): UserProfile

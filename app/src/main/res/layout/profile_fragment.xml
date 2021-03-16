@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.twitchandroidproject.ui.ProfileFragmentViewModel" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/person_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintBottom_toBottomOf="@+id/person_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintStart_toEndOf="@+id/person_name"
+            app:layout_constraintTop_toTopOf="@+id/person_name"
+            app:layout_constraintVertical_bias="1.0"
+            dateOfBirth="@{viewModel.userProfile.dateOfBirth}"/>
+
+        <TextView
+            android:id="@+id/person_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="36dp"
+            android:text="@{String.format(@string/person_name_template, viewModel.userProfile.fullName)}" />
+
+        <TextView
+            android:id="@+id/person_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="36dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/person_name"
+            app:layout_constraintTop_toBottomOf="@+id/person_name"
+            android:text="@{viewModel.userProfile.bio}" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/profile_interests_chipgroup"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="36dp"
+            android:paddingBottom="15dp"
+            app:layout_constraintStart_toStartOf="@id/person_bio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/person_bio">
+        </com.google.android.material.chip.ChipGroup>
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_interests_chipgroup"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/avatar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/profile_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/home_profile_fragment_fab"
+            android:text="@string/home_profile_fragment_fab"
+            android:visibility="invisible"
+            android:backgroundTint="?colorPrimary"
+            android:textColor="?colorOnPrimary"
+            app:iconTint="?colorOnPrimary"
+            app:icon="@drawable/ic_baseline_person_add_24"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

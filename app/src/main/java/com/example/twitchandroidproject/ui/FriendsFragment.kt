@@ -1,17 +1,14 @@
 package com.example.twitchandroidproject.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
@@ -22,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * A simple [Fragment] subclass.
  */
 @AndroidEntryPoint
-class FriendsFragment : Fragment() {
+class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FriendsRecyclerViewAdapter
@@ -43,7 +40,7 @@ class FriendsFragment : Fragment() {
         // Configure recycler view and adapter
         recyclerView = binding.friendsRecycler
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = FriendsRecyclerViewAdapter()
+        adapter = FriendsRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
 
         viewModel.friendProfiles.observe(viewLifecycleOwner, Observer {
@@ -58,5 +55,10 @@ class FriendsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onProfileClick(position: Int) {
+        val userIdBundle = bundleOf("userId" to viewModel.friendProfiles.value!![position].id)
+        binding.root.findNavController().navigate(R.id.action_FriendsFragment_to_ProfileFragment, userIdBundle)
     }
 }

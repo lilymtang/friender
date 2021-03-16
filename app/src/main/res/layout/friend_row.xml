@@ -16,7 +16,7 @@
             android:id="@+id/circular_profile_image"
             android:layout_width="@dimen/friend_row_profile_image"
             android:layout_height="@dimen/friend_row_profile_image"
-            android:src="@drawable/profile_image"
+            android:src="@drawable/avatar"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
             android:layout_marginStart="30dp"

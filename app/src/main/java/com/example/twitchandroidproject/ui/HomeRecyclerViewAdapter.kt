@@ -1,11 +1,14 @@
 package com.example.twitchandroidproject.ui
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.findNavController
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
@@ -13,19 +16,39 @@ import com.example.twitchandroidproject.repository.model.UserProfile
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
-class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
+class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     lateinit var context: Context
     private lateinit var binding: PersonCardBinding
+
     var userProfiles = listOf<UserProfile>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    class ViewHolder(private val binding: PersonCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    interface OnProfileClickListener {
+        fun onProfileClick(position: Int)
+    }
+
+    // ViewHolder implements click listener
+    class ViewHolder(itemView: View,
+                     private val binding: PersonCardBinding,
+                     private val onProfileClickListener: OnProfileClickListener)
+        : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        // Set click listener to this class
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         fun bind(userProfile: UserProfile) {
             binding.person = userProfile
             binding.executePendingBindings()
+        }
+
+        // onClick for this class will call onProfileClick and pass adapterPosition
+        override fun onClick(v: View) {
+            onProfileClickListener.onProfileClick(adapterPosition)
         }
     }
 
@@ -35,13 +58,7 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.Vie
         // Create a new view, which defines the UI of the list item
         val inflater = LayoutInflater.from(viewGroup.context)
         binding = PersonCardBinding.inflate(inflater)
-        val holder =  ViewHolder(binding)
-
-        holder.itemView.setOnClickListener(
-            fun (v: View) {
-                binding.root.findNavController().navigate(R.id.action_HomeFragment_to_HomeProfileFragment)
-            }
-        )
+        val holder =  ViewHolder(binding.root, binding, onProfileClickListener)
 
         context = viewGroup.context
 
@@ -51,6 +68,7 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.Vie
     // Replace the contents of the view holder with data at given position
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val userProfile = userProfiles[position]
+
         viewHolder.bind(userProfile)
 
         val chipGroup: ChipGroup = binding.preferredInterestsChipgroup
@@ -58,17 +76,30 @@ class HomeRecyclerViewAdapter : RecyclerView.Adapter<HomeRecyclerViewAdapter.Vie
 
         // For each preferred interest in list, create a preferred interest chip
         for (preferredInterest in userProfile.preferredInterests) {
-            chipGroup.addView(createPreferredInterestChip(preferredInterest))
+            chipGroup.addView(createInterestChip(preferredInterest,
+                context.getColorFromAttr(R.attr.preferredInterestColor)
+            ))
         }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = userProfiles.size
 
-    private fun createPreferredInterestChip(interest: String): TextView {
+    private fun createInterestChip(interest: String, chipColor: Int): TextView {
         val interestBadge = Chip(context)
         interestBadge.text = interest
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
+        interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge
+    }
+
+    @ColorInt
+    fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
     }
 }
