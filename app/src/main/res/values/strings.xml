@@ -42,4 +42,18 @@
     <string name="login_fragment_create_your_account">Create new account</string>
     <string name="login_fragment_label_no_account">No account yet?</string>
     <string name="login_fragment_content_description_application_logo">Application Logo</string>
+
+    <!-- Registration Screen -->
+    <string name="registration_fragment_hint_display_name">Display Name</string>
+    <string name="registration_fragment_hint_date_of_birth">Date of Birth</string>
+    <string name="registration_fragment_hint_email">Email</string>
+    <string name="registration_fragment_hint_password">Password</string>
+    <string name="registration_fragment_hint_confirm_password">Confirm Password</string>
+    <string name="registration_fragment_hint_bio">Tell the world who you are</string>
+    <string name="registration_fragment_get_started">Get Started</string>
+
+    <!-- Validation Errors -->
+    <string name="error_validation_blank">Should not be blank</string>
+    <string name="error_validation_date_of_birth_too_young">You should be at least 16 years old</string>
+    <string name="error_validation_password_does_not_match">Does not match password</string>
 </resources>
