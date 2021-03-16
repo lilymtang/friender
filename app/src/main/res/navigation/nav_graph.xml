@@ -15,7 +15,7 @@
             app:destination="@id/ProfileFragment">
             <argument
                 android:name="userId"
-                app:argType="Long" />
+                app:argType="long" />
         </action>
     </fragment>
     <fragment
