@@ -31,12 +31,7 @@ class AccountFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
-
-//        binding.loginButton.setOnClickListener { v: View ->
-//            v.findNavController()
-//                .navigate(AccountFragmentDirections.actionAccountFragmentToLoginFragment())
-//        }
-
+        
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
