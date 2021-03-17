@@ -48,6 +48,12 @@ class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListen
         adapter = FriendsRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
 
+        // Create snackbar with option to undo
+        removeConfirmationSnackbar = Snackbar.make(
+            binding.root, R.string.friend_remove_confirmation,
+            Snackbar.LENGTH_LONG
+        )
+
         val swipeHandler = object : SwipeToDeleteCallback(requireContext()) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
@@ -59,10 +65,6 @@ class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListen
                 adapter.removeAt(deletedPosition)
 
                 // Show snackbar with option to undo
-                removeConfirmationSnackbar = Snackbar.make(
-                    binding.root, R.string.friend_remove_confirmation,
-                    Snackbar.LENGTH_LONG
-                )
                 removeConfirmationSnackbar.setAction(R.string.snack_bar_undo) { v: View? ->
                     undoDelete(deletedPosition, deletedFriend)
                 }
