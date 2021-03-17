@@ -18,7 +18,9 @@ import com.example.twitchandroidproject.databinding.ProfileFragmentBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.coroutineScope
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -58,6 +60,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View) {
         viewModel.addFriend()
+        Snackbar.make(v, R.string.friend_add_confirmation, Snackbar.LENGTH_SHORT)
+            .show()
+
     }
 
     private fun addChipGroup(userProfile: UserProfile) {
