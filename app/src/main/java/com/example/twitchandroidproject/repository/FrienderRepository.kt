@@ -122,7 +122,8 @@ class FrienderRepository @Inject constructor(
      * @throws IllegalStateException in case if user is not logged in
      */
     suspend fun addFriend(userProfile: UserProfile) {
-//        throwErrorIfNotLoggedIn()
+        // TODO: uncomment when login flow is complete
+        // throwErrorIfNotLoggedIn()
 
         withContext(dispatcherProvider.io()) {
             if (userProfile.userProfileType == UserProfile.UserProfileType.OTHER) {
