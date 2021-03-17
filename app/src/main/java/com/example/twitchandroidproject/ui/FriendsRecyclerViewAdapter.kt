@@ -18,16 +18,6 @@ class FriendsRecyclerViewAdapter(var onProfileClickListener: HomeRecyclerViewAda
             notifyDataSetChanged()
         }
 
-    fun removeAt(position: Int) {
-        userProfiles.toMutableList().removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    fun addAt(position: Int, userProfile: UserProfile) {
-        userProfiles.toMutableList().add(position, userProfile)
-        notifyItemInserted(position)
-    }
-
     class ViewHolder(itemView: View,
                      private val binding: FriendRowBinding,
                      private val onProfileClickListener: HomeRecyclerViewAdapter.OnProfileClickListener)

@@ -62,7 +62,7 @@ class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListen
                 val deletedFriend = adapter.userProfiles[deletedPosition]
 
                 viewModel.removeFriend(adapter.userProfiles[deletedPosition])
-                adapter.removeAt(deletedPosition)
+                adapter.notifyItemRemoved(deletedPosition)
 
                 // Show snackbar with option to undo
                 removeConfirmationSnackbar.setAction(R.string.snack_bar_undo) { v: View? ->
@@ -100,6 +100,6 @@ class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListen
 
     private fun undoDelete(removeAtPosition: Int, deletedFriend: UserProfile) {
         viewModel.addFriend(deletedFriend)
-        adapter.addAt(removeAtPosition, deletedFriend)
+        adapter.notifyDataSetChanged()
     }
 }
