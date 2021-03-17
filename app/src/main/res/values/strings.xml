@@ -62,4 +62,7 @@
     <string name="error_validation_blank">Should not be blank</string>
     <string name="error_validation_date_of_birth_too_young">You should be at least 16 years old</string>
     <string name="error_validation_password_does_not_match">Does not match password</string>
+  
+    <!-- Profile Screen -->
+    <string name="friend_add_confirmation">Friend added successfully</string>
 </resources>

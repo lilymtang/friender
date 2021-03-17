@@ -5,6 +5,9 @@
         <variable
             name="viewModel"
             type="com.example.twitchandroidproject.ui.ProfileFragmentViewModel" />
+        <variable
+            name="profileFragment"
+            type="com.example.twitchandroidproject.ui.ProfileFragment" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_height="match_parent"
         android:layout_width="match_parent">
@@ -17,8 +20,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
 
         <TextView
             android:id="@+id/person_age"
@@ -99,6 +100,7 @@
             android:backgroundTint="?colorPrimary"
             android:textColor="?colorOnPrimary"
             app:iconTint="?colorOnPrimary"
+            android:onClick="@{(view) -> profileFragment.onClick(view)}"
             app:icon="@drawable/ic_baseline_person_add_24"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -115,6 +115,26 @@ class FrienderRepository @Inject constructor(
     }
 
     /**
+     * Updates current user profile to the database
+     *
+     * @param userProfile user profile to update (profile type must be CURRENT_USER)
+     *
+     * @throws IllegalStateException in case if user is not logged in
+     */
+    suspend fun addFriend(userProfile: UserProfile) {
+        // TODO: uncomment when login flow is complete
+        // throwErrorIfNotLoggedIn()
+
+        withContext(dispatcherProvider.io()) {
+            if (userProfile.userProfileType == UserProfile.UserProfileType.OTHER) {
+                // Change the user to a friend
+                userProfile.userProfileType = UserProfile.UserProfileType.FRIEND
+                database.userProfileDao().updateUserProfile(userProfile)
+            }
+        }
+    }
+
+    /**
      * Gets profile of the current user
      *
      * @return Observable UserProfile
