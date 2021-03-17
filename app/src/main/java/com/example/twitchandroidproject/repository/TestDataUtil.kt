@@ -65,7 +65,7 @@ object TestDataUtil {
         UserProfile(
             email = "user5@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
-            isAvailableToHangout = true,
+            isAvailableToHangout = false,
             fullName = "Lily",
             dateOfBirth = Date(96,1,20),
             bio = "bio5",
@@ -110,7 +110,7 @@ object TestDataUtil {
         UserProfile(
             email = "user8@email.com",
             userProfileType = UserProfile.UserProfileType.OTHER,
-            isAvailableToHangout = true,
+            isAvailableToHangout = false,
             fullName = "Lara Jean",
             dateOfBirth = Date(93,1,20),
             bio = "bio8",
