@@ -43,5 +43,7 @@
     <string name="login_fragment_label_no_account">No account yet?</string>
     <string name="login_fragment_content_description_application_logo">Application Logo</string>
 
-    <string name="friend_add_confirmation">Friend added successfully</string>
+    <string name="friend_add_confirmation">Friend added.</string>
+    <string name="friend_remove_confirmation">Friend removed.</string>
+    <string name="snack_bar_undo">Undo</string>
 </resources>

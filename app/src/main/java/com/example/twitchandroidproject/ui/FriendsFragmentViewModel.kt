@@ -42,4 +42,16 @@ class FriendsFragmentViewModel @Inject constructor(
                 MutableLiveData(listOf())
             }
         }
+
+    fun removeFriend(userProfile: UserProfile) {
+        viewModelScope.launch {
+            frienderRepository.removeFriend(userProfile)
+        }
+    }
+
+    fun addFriend(userProfile: UserProfile) {
+        viewModelScope.launch {
+            frienderRepository.addFriend(userProfile)
+        }
+    }
 }
