@@ -2,7 +2,7 @@ package com.example.twitchandroidproject.repository
 
 import com.example.twitchandroidproject.repository.model.UserAccount
 import com.example.twitchandroidproject.repository.model.UserProfile
-import java.util.Date
+import java.util.Calendar
 
 
 /**
@@ -22,7 +22,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.FRIEND,
             isAvailableToHangout = false,
             fullName = "User2",
-            dateOfBirth = Date(),
+            dateOfBirth = dateOfBirthForAge(72),
             bio = "bio2",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -37,7 +37,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.FRIEND,
             isAvailableToHangout = true,
             fullName = "User3",
-            dateOfBirth = Date(),
+            dateOfBirth = dateOfBirthForAge(27),
             bio = "bio3",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -52,7 +52,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.FRIEND,
             isAvailableToHangout = true,
             fullName = "User4",
-            dateOfBirth = Date(),
+            dateOfBirth = dateOfBirthForAge(51),
             bio = "bio4",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -67,7 +67,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = false,
             fullName = "Lily",
-            dateOfBirth = Date(96,1,20),
+            dateOfBirth = dateOfBirthForAge(31),
             bio = "bio5",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -82,7 +82,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
             fullName = "Moni",
-            dateOfBirth = Date(99,3,20),
+            dateOfBirth = dateOfBirthForAge(25),
             bio = "bio6",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -97,7 +97,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
             fullName = "Amy",
-            dateOfBirth = Date(92,3,20),
+            dateOfBirth = dateOfBirthForAge(18),
             bio = "bio7",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -112,7 +112,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = false,
             fullName = "Lara Jean",
-            dateOfBirth = Date(93,1,20),
+            dateOfBirth = dateOfBirthForAge(34),
             bio = "bio8",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -127,7 +127,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
             fullName = "Jonathan",
-            dateOfBirth = Date(100,3,20),
+            dateOfBirth = dateOfBirthForAge(40),
             bio = "bio9",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -140,7 +140,7 @@ object TestDataUtil {
             userProfileType = UserProfile.UserProfileType.OTHER,
             isAvailableToHangout = true,
             fullName = "Christopher",
-            dateOfBirth = Date(84,3,20),
+            dateOfBirth = dateOfBirthForAge(30),
             bio = "bio10",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -153,11 +153,11 @@ object TestDataUtil {
 
     fun createCurrentUserProfile() =
         UserProfile(
-            email = "user1@email.com",
+            email = "user",
             userProfileType = UserProfile.UserProfileType.CURRENT_USER,
             isAvailableToHangout = true,
             fullName = "User1",
-            dateOfBirth = Date(),
+            dateOfBirth = dateOfBirthForAge(20),
             bio = "bio1",
             profilePicture = null,
             interests = listOf("interest1", "interest2", "interest3"),
@@ -169,5 +169,12 @@ object TestDataUtil {
         )
 
     fun createInitialUserAccount() =
-        UserAccount(email = "user1@email.com", password = "password1")
+        UserAccount(email = "user", password = "user")
+
+    // helper function that creates dateOfBirth of provided age
+    // to simplify test user data creation
+    private fun dateOfBirthForAge(age: Int) =
+        Calendar.getInstance().apply {
+            add(Calendar.YEAR, -age)
+        }.time
 }

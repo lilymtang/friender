@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +32,8 @@ class LoginFragment : Fragment() {
 
         viewModel.eventLoginSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
             if (shouldNavigate) {
-                // TODO: Navigate back to the screen from where login was initiated
+
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeContainerFragment())
 
                 // Reset state to make sure we only navigate once, even if the device
                 // has a configuration change.

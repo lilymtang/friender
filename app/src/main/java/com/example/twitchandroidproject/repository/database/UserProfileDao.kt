@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.twitchandroidproject.repository.model.UserProfile
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Observable
 
 @Dao
 interface UserProfileDao {
@@ -15,7 +14,7 @@ interface UserProfileDao {
     suspend fun insertAll(users: List<UserProfile>)
 
     @Query("SELECT * FROM UserProfile WHERE userProfileType IN (:userProfileTypes)")
-    fun getAll(userProfileTypes: List<UserProfile.UserProfileType>): Observable<List<UserProfile>>
+    fun getAll(userProfileTypes: List<UserProfile.UserProfileType>): Flowable<List<UserProfile>>
 
     @Query("SELECT COUNT(*) FROM UserProfile")
     suspend fun getCount(): Int
@@ -23,8 +22,11 @@ interface UserProfileDao {
     @Query("SELECT * FROM UserProfile WHERE id = :id")
     fun getById(id: Long): Flowable<UserProfile>
 
-    @Query("SELECT * FROM UserProfile WHERE email = :email")
-    suspend fun getByEmail(email: String): UserProfile
+    @Query("SELECT * FROM UserProfile WHERE userProfileType = :userProfileType AND email = :email")
+    fun getByProfileTypeAndEmail(
+        userProfileType: UserProfile.UserProfileType,
+        email: String
+    ): Flowable<UserProfile>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateUserProfile(user: UserProfile)
