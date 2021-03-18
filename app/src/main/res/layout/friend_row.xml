@@ -10,16 +10,16 @@
     <RelativeLayout
         android:id="@+id/friend_row"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circular_profile_image"
             android:layout_width="@dimen/friend_row_profile_image"
             android:layout_height="@dimen/friend_row_profile_image"
             android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp"
             android:src="@drawable/avatar"/>
 
         <ImageView

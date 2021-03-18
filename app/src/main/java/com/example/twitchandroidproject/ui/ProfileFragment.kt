@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -85,6 +86,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun createInterestChip(interest: String, chipColor: Int): TextView {
         val interestBadge = Chip(context)
         interestBadge.text = interest
+        interestBadge.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
         interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge

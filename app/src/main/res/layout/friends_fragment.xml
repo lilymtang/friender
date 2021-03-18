@@ -17,9 +17,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:id="@+id/friends_recycler"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

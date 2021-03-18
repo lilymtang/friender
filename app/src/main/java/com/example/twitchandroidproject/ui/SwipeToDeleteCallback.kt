@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 
-abstract class SwipeToDeleteCallback(context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
     private val icon: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_baseline_delete_24)!!
     private val background = ColorDrawable()
     private val clearPaint = Paint().apply { xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR) }
@@ -39,7 +39,7 @@ abstract class SwipeToDeleteCallback(context: Context) : ItemTouchHelper.SimpleC
         val itemHeight = itemView.bottom - itemView.top
 
         // Draw the red delete background
-        background.color = Color.RED
+        background.color = ContextCompat.getColor(context, R.color.pink_500)
         background.setBounds(
             itemView.right + dX.toInt(),
             itemView.top,
