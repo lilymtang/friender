@@ -1,22 +1,34 @@
 package com.example.twitchandroidproject.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentHomeContainerBinding
 import com.example.twitchandroidproject.ui.account.AccountFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeContainerFragment : Fragment() {
 
-    private var homeFragment = HomeFragment()
-    private var friendsFragment = FriendsFragment()
-    private var accountFragment = AccountFragment()
+    @Inject
+    lateinit var homeFragment: HomeFragment
+
+    @Inject
+    lateinit var friendsFragment: FriendsFragment
+
+    @Inject
+    lateinit var accountFragment: AccountFragment
+
+    private val viewModel: HomeContainerViewModel by viewModels()
 
     lateinit var binding: FragmentHomeContainerBinding
 
@@ -37,7 +49,37 @@ class HomeContainerFragment : Fragment() {
             true
         }
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    showLogoutConfirmationDialog()
+                }
+            })
+
+        viewModel.eventLogoutSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
+            if (shouldNavigate) {
+                findNavController().navigateUp()
+                viewModel.markEventLogoutHandled()
+            }
+        })
+
         return binding.root
+    }
+
+    // Dialog for the user to confirm that user wants to logout
+    private fun showLogoutConfirmationDialog() {
+
+        val alertDialog = AlertDialog.Builder(context).apply {
+            setMessage(R.string.dialog_message_logout)
+
+            setPositiveButton(R.string.dialog_button_logout) { _, _ ->
+                viewModel.logout()
+            }
+
+            setNegativeButton(R.string.dialog_button_cancel, null)
+        }.create()
+
+        alertDialog.show()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
