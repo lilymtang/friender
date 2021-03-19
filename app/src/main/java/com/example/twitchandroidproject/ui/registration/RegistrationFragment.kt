@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentRegistrationBinding
 import com.google.android.material.snackbar.Snackbar
@@ -33,10 +35,6 @@ class RegistrationFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        binding.getStartedButton.setOnClickListener {
-            // TODO: navigate to screen where originally we opened login flow
-        }
 
         binding.editProfileImage.setOnClickListener {
             // TODO: implement logic for selecting profile image
@@ -63,7 +61,7 @@ class RegistrationFragment : Fragment() {
 
         viewModel.eventRegistrationSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
             if (shouldNavigate) {
-                // TODO: Navigate back to Home screen
+                findNavController().navigate(RegistrationFragmentDirections.actionRegistrationFragmentToHomeContainerFragment())
 
                 // Reset state to make sure we only navigate once, even if the device
                 // has a configuration change.
@@ -76,6 +74,10 @@ class RegistrationFragment : Fragment() {
                 Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).show()
             }
         })
+
+        // connect toolbar with navigation graph to handle back button
+        binding.toolbar
+            .setupWithNavController(findNavController())
 
         return binding.root
     }

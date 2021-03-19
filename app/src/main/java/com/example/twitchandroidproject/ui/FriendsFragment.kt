@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -92,8 +91,14 @@ class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListen
     }
 
     override fun onProfileClick(position: Int) {
-        val userIdBundle = bundleOf("userId" to viewModel.friendProfiles.value!![position].id)
-        binding.root.findNavController().navigate(R.id.action_FriendsFragment_to_ProfileFragment, userIdBundle)
+        val userId = viewModel.friendProfiles.value!![position].id
+
+        binding.root.findNavController()
+            .navigate(
+                HomeContainerFragmentDirections.actionHomeContainerFragmentToProfileFragment(
+                    userId
+                )
+            )
     }
 
     private fun undoDelete(deletedFriend: UserProfile) {

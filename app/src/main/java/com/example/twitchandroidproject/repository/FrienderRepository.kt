@@ -11,7 +11,7 @@ import com.example.twitchandroidproject.repository.database.FrienderDatabase
 import com.example.twitchandroidproject.repository.model.UserAccount
 import com.example.twitchandroidproject.repository.model.UserProfile
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -61,7 +61,7 @@ class FrienderRepository @Inject constructor(
      *
      * @throws IllegalStateException in case if user is not logged in
      */
-    fun getFriends(): Observable<List<UserProfile>> {
+    fun getFriends(): Flowable<List<UserProfile>> {
         throwErrorIfNotLoggedIn()
 
         return database.userProfileDao()
@@ -85,6 +85,9 @@ class FrienderRepository @Inject constructor(
             } else {
                 throw IllegalArgumentException(context.getString(R.string.error_message_duplicate_email))
             }
+
+            // Automatically log in user at the end of the registration flow
+            logIn(email, password)
         }
 
     /**
@@ -161,12 +164,13 @@ class FrienderRepository @Inject constructor(
      *
      * @throws IllegalStateException in case if user is not logged in
      */
-    fun getCurrentUserProfile(): Observable<UserProfile> {
+    fun getCurrentUserProfile(): Flowable<UserProfile> {
         throwErrorIfNotLoggedIn()
 
-        return (database.userProfileDao()
-            .getAll(userProfileTypes = listOf(UserProfile.UserProfileType.CURRENT_USER)))
-            .flatMapIterable { it }
+        return database.userProfileDao().getByProfileTypeAndEmail(
+            UserProfile.UserProfileType.CURRENT_USER,
+            currentlyLoggedInUserEmail.value!!
+        )
     }
 
 

@@ -1,23 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.android.navigation.LoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <LinearLayout
+        <variable
+            name="viewModel"
+            type="com.example.twitchandroidproject.ui.account.AccountViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin_side"
-        android:gravity="center"
-        android:orientation="vertical">
+        tools:context=".ui.MainActivity">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginButton"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_components"
-            android:text="@string/login_fragment_sign_in" />
+            android:layout_height="128dp"
+            android:fitsSystemWindows="true">
 
-    </LinearLayout>
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="noScroll|exitUntilCollapsed"
+                app:titleEnabled="false">
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_side"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="@dimen/margin_side"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/availabilitySwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:checked="@={viewModel.isAvailableToHangout}"
+                    android:text="@string/account_fragment_label_availability"
+                    android:textAppearance="?textAppearanceSubtitle1" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/usernameText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_display_name"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.displayNameValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={viewModel.displayName}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_date_of_birth"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.dateOfBirthValidatorError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateOfBirthField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:date="@{viewModel.dateOfBirth}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bioText"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_bio"
+                    app:errorEnabled="true"
+                    app:errorMessage="@{viewModel.bioValidationError}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:text="@={viewModel.bio}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/getStartedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:enabled="@{viewModel.saveButtonEnabled}"
+                    android:focusable="true"
+                    android:onClick="@{() -> viewModel.save()}"
+                    android:text="@string/account_fragment_button_save" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@null"
+            app:cardCornerRadius="64dp"
+            app:cardElevation="10dp"
+            app:layout_anchor="@+id/app_bar"
+            app:layout_anchorGravity="bottom|center">
+
+            <ImageView
+                android:id="@+id/edit_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:profileImage="@{viewModel.profilePicture}"
+                tools:src="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
