@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
@@ -88,6 +89,7 @@ class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener
     private fun createInterestChip(interest: String, chipColor: Int): TextView {
         val interestBadge = Chip(context)
         interestBadge.text = interest
+        interestBadge.setTextColor(ContextCompat.getColor(context, R.color.white))
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
         interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge

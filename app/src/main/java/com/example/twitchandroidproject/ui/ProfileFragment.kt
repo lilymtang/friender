@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,7 +21,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -86,6 +86,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun createInterestChip(interest: String, chipColor: Int): TextView {
         val interestBadge = Chip(context)
         interestBadge.text = interest
+        interestBadge.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
         interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge

@@ -11,6 +11,7 @@ import com.example.twitchandroidproject.repository.model.UserProfile
 class FriendsRecyclerViewAdapter(var onProfileClickListener: HomeRecyclerViewAdapter.OnProfileClickListener) : RecyclerView.Adapter<FriendsRecyclerViewAdapter.ViewHolder>() {
     lateinit var context: Context
     private lateinit var binding: FriendRowBinding
+
     var userProfiles = listOf<UserProfile>()
         set(value) {
             field = value

@@ -2,9 +2,11 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="chip_vert_padding">5dp</dimen>
     <dimen name="friend_row_name">18dp</dimen>
-    <dimen name="friend_row_profile_image">55dp</dimen>
+    <dimen name="friend_row_profile_image">45dp</dimen>
     <!-- Layout side margin value to be used around screen content -->
     <dimen name="margin_side">16dp</dimen>
     <!-- Margin to be used between components -->
     <dimen name="margin_components">16dp</dimen>
+    <dimen name="profile_image_horiz_margin">20dp</dimen>
+    <dimen name="profile_image_vert_margin">15dp</dimen>
 </resources>
