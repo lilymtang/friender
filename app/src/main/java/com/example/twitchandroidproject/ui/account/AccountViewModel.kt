@@ -4,9 +4,9 @@ import android.app.Application
 import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.lifecycle.toLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.repository.FrienderRepository
@@ -15,7 +15,6 @@ import com.example.twitchandroidproject.ui.utils.dateOfBirthValidationObserver
 import com.example.twitchandroidproject.ui.utils.notBlankValidationObserver
 import com.example.twitchandroidproject.ui.utils.transformationsMapAll
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.core.BackpressureStrategy
 import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
@@ -26,36 +25,14 @@ class AccountViewModel @Inject constructor(
     private val frienderRepository: FrienderRepository,
 ) : AndroidViewModel(application) {
 
-    val currentUserProfile: LiveData<UserProfile> =
-        Transformations.switchMap(frienderRepository.isUserLoggedIn) { isLoggedIn ->
+    val currentUserProfile = Transformations.map(
+        frienderRepository.getCurrentUserProfile().toLiveData()
+    ) { userProfile ->
+        // when data is retrieved we want to set initial values for each field
+        setInitialFieldValues(userProfile)
 
-            if (isLoggedIn) {
-                // return data as normal
-
-                val userProfileLiveData = LiveDataReactiveStreams.fromPublisher(
-                    frienderRepository.getCurrentUserProfile()
-                        .toFlowable(BackpressureStrategy.BUFFER)
-                )
-
-                Transformations.map(userProfileLiveData) { userProfile ->
-                    // when data is retrieved we want to set initial values for each field
-                    setInitialFieldValues(userProfile)
-
-                    userProfile
-                }
-            } else {
-                // TODO: temporary solution while security is not integrated with navigation
-                // and user is able to access sections that he can not while not authenticated
-
-                // doing login
-                viewModelScope.launch {
-                    frienderRepository.logIn("user1@email.com", "password1")
-                }
-
-                // and returning empty data meanwhile
-                MutableLiveData(null)
-            }
-        }
+        userProfile
+    }
 
     val profilePicture = MutableLiveData<Bitmap?>(null)
 
