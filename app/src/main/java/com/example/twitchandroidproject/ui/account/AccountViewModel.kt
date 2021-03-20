@@ -94,12 +94,20 @@ class AccountViewModel @Inject constructor(
     val saveMessage: LiveData<String?>
         get() = _saveMessage
 
+    // property for notify view the "event" when logout was successful
+    private val _eventLogoutSuccessful = MutableLiveData<Boolean>()
+    val eventLogoutSuccessful: LiveData<Boolean>
+        get() = _eventLogoutSuccessful
+
+    // used to mark event as completed to avoid handling same event 2 times
+    fun markEventLogoutHandled() {
+        _eventLogoutSuccessful.value = false
+    }
 
     // used to mark event as completed to avoid handling same event 2 times
     fun markSaveMessageDisplayedHandled() {
         _saveMessage.value = null
     }
-
 
     fun save() {
         currentUserProfile.value?.let { userProfile ->
@@ -122,5 +130,10 @@ class AccountViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun logout() {
+        frienderRepository.logout()
+        _eventLogoutSuccessful.value = true
     }
 }

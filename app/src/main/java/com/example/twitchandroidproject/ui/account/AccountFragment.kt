@@ -4,21 +4,27 @@ import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentAccountBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import java.util.Date
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class AccountFragment : Fragment() {
+class AccountFragment @Inject constructor() : Fragment() {
 
     lateinit var binding: FragmentAccountBinding
     private val viewModel: AccountViewModel by viewModels()
@@ -31,9 +37,16 @@ class AccountFragment : Fragment() {
 
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
-        
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        setHasOptionsMenu(true)
+
+        (activity as AppCompatActivity).apply {
+            setSupportActionBar(binding.toolbar)
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
 
         binding.dateOfBirthField.apply {
             // disable editing text field manually
@@ -71,6 +84,27 @@ class AccountFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_account, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.action_logout -> {
+                viewModel.logout()
+                viewModel.eventLogoutSuccessful.observe(viewLifecycleOwner, { shouldNavigate ->
+                    if (shouldNavigate) {
+                        findNavController().navigateUp()
+                        viewModel.markEventLogoutHandled()
+                    }
+                })
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun openDatePicker() {

@@ -16,13 +16,15 @@ import com.example.twitchandroidproject.databinding.FriendsFragmentBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
  * A simple [Fragment] subclass.
  */
 @AndroidEntryPoint
-class FriendsFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener {
+class FriendsFragment @Inject constructor() : Fragment(),
+    HomeRecyclerViewAdapter.OnProfileClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FriendsRecyclerViewAdapter

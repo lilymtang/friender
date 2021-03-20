@@ -117,6 +117,10 @@ class FrienderRepository @Inject constructor(
         }
     }
 
+    fun logout() {
+        currentlyLoggedInUserEmail.value = null
+    }
+
     /**
      * Updates current user profile to the database
      *

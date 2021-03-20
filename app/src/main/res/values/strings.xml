@@ -57,15 +57,21 @@
     <string name="account_fragment_message_profile_update_error">An error has occurred while updating your profile: %s</string>
     <string name="account_fragment_label_availability">Availability</string>
     <string name="account_fragment_button_save">Save</string>
+    <string name="account_fragment_menu_logout">Logout</string>
 
     <!-- Validation Errors -->
     <string name="error_validation_blank">Should not be blank</string>
     <string name="error_validation_date_of_birth_too_young">You should be at least 16 years old</string>
     <string name="error_validation_password_does_not_match">Does not match password</string>
-  
+
     <!-- Profile Screen -->
     <string name="friend_add_confirmation">Friend added.</string>
     <string name="friend_remove_confirmation">Friend removed.</string>
     <string name="snack_bar_undo">Undo</string>
+
+    <!-- Logout confirmation dialog -->
+    <string name="dialog_message_logout">Are you sure you want to logout?</string>
+    <string name="dialog_button_logout">Logout</string>
+    <string name="dialog_button_cancel">Cancel</string>
 
 </resources>

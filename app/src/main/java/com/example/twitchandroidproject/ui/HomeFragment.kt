@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 @AndroidEntryPoint
-class HomeFragment : Fragment(), HomeRecyclerViewAdapter.OnProfileClickListener {
+class HomeFragment @Inject constructor() : Fragment(),
+    HomeRecyclerViewAdapter.OnProfileClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: HomeRecyclerViewAdapter
     private var _binding: HomeFragmentBinding? = null
