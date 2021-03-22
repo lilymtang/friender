@@ -43,9 +43,18 @@ class FrienderRepository @Inject constructor(
     fun getUserById(id: Long) = database.userProfileDao().getById(id)
 
     /**
+     * Gets users with bios or interests that match the search query
+     * @param keyword search query
+     * @return Flowable<List<UserProfile>>
+     */
+    fun getUsersByKeyword(keyword: String): Flowable<List<UserProfile>> {
+        return database.userProfileDao().getUsersByKeyword(keyword, listOf(UserProfile.UserProfileType.OTHER))
+    }
+
+    /**
      * Gets other users nearby
      *
-     * @return Observable list of UserProfiles
+     * @return Flowable list of UserProfiles
      */
     fun getOtherUsersNearby() =
         database.userProfileDao().getAll(
@@ -57,7 +66,7 @@ class FrienderRepository @Inject constructor(
     /**
      * Gets friends nearby
      *
-     * @return Observable list of UserProfiles
+     * @return Flowable list of UserProfiles
      *
      * @throws IllegalStateException in case if user is not logged in
      */

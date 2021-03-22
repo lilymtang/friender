@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.TypeConverters
 import com.example.twitchandroidproject.repository.model.UserProfile
 import io.reactivex.rxjava3.core.Flowable
 
@@ -21,6 +22,13 @@ interface UserProfileDao {
 
     @Query("SELECT * FROM UserProfile WHERE id = :id")
     fun getById(id: Long): Flowable<UserProfile>
+
+    @Query("SELECT * FROM UserProfile WHERE userProfileType IN (:userProfileTypes)" +
+        "AND (bio LIKE '%' || :keyword || '%' " +
+        "OR preferredInterests LIKE '%' || :keyword || '%' " +
+        "OR interests LIKE '%' || :keyword || '%' " +
+        "OR fullName LIKE '%' || :keyword || '%')")
+    fun getUsersByKeyword(keyword: String, userProfileTypes: List<UserProfile.UserProfileType>): Flowable<List<UserProfile>>
 
     @Query("SELECT * FROM UserProfile WHERE userProfileType = :userProfileType AND email = :email")
     fun getByProfileTypeAndEmail(

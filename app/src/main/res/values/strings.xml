@@ -68,6 +68,7 @@
     <string name="friend_add_confirmation">Friend added.</string>
     <string name="friend_remove_confirmation">Friend removed.</string>
     <string name="snack_bar_undo">Undo</string>
+    <string name="search">search</string>
 
     <!-- Logout confirmation dialog -->
     <string name="dialog_message_logout">Are you sure you want to logout?</string>

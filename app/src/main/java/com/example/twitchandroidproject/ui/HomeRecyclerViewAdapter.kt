@@ -15,7 +15,6 @@ import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 
 class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
     lateinit var context: Context
@@ -71,16 +70,6 @@ class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener
         val userProfile = userProfiles[position]
 
         viewHolder.bind(userProfile)
-
-        val chipGroup: ChipGroup = binding.preferredInterestsChipgroup
-        chipGroup.chipSpacingVertical = context.resources.getDimensionPixelSize(R.dimen.chip_vert_padding)
-
-        // For each preferred interest in list, create a preferred interest chip
-        for (preferredInterest in userProfile.preferredInterests) {
-            chipGroup.addView(createInterestChip(preferredInterest,
-                context.getColorFromAttr(R.attr.preferredInterestColor)
-            ))
-        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

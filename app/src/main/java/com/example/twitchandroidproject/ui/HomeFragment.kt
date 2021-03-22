@@ -1,9 +1,11 @@
 package com.example.twitchandroidproject.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -20,9 +22,14 @@ import javax.inject.Inject
  */
 @AndroidEntryPoint
 class HomeFragment @Inject constructor() : Fragment(),
-    HomeRecyclerViewAdapter.OnProfileClickListener {
+    HomeRecyclerViewAdapter.OnProfileClickListener,
+    SearchView.OnQueryTextListener,
+    SearchView.OnCloseListener
+{
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: HomeRecyclerViewAdapter
+    private lateinit var searchView: SearchView
+    var isCollapsed = true
     private var _binding: HomeFragmentBinding? = null
 
     // This property is only valid between onCreateView and
@@ -45,6 +52,13 @@ class HomeFragment @Inject constructor() : Fragment(),
         adapter = HomeRecyclerViewAdapter(this)
         recyclerView.adapter = adapter
 
+        // Configure search view
+        searchView = binding.searchBar
+        searchView.setOnQueryTextListener(this)
+        searchView.setOnCloseListener(this)
+        searchView.isIconified = isCollapsed // remove focus and collapse search bar
+
+        // Add observer to user profiles dataset and set adapter data when it changes
         viewModel.userProfiles.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.userProfiles = it
@@ -69,4 +83,25 @@ class HomeFragment @Inject constructor() : Fragment(),
                 )
             )
     }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        isCollapsed = false // query remains visible in the search bar
+        viewModel.setSearchQuery(query)
+        return false
+    }
+
+    /* Allows for live updating search */
+    override fun onQueryTextChange(query: String?): Boolean {
+        isCollapsed = false // query remains visible in the search bar
+        viewModel.setSearchQuery(query)
+        return false
+    }
+
+    override fun onClose(): Boolean {
+        viewModel.setSearchQuery(null)
+        searchView.onActionViewCollapsed()
+        isCollapsed = true // remove focus and collapse search bar
+        return true
+    }
+
 }

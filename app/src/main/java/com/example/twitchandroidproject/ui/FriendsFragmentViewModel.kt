@@ -26,5 +26,4 @@ class FriendsFragmentViewModel @Inject constructor(
         }
     }
     val friendProfiles: LiveData<List<UserProfile>> = frienderRepository.getFriends().toLiveData()
-
 }

@@ -21,6 +21,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:theme="@style/Theme.TwitchAndroidProject.AppBarOverlay">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.TwitchAndroidProject.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
         <TextView
             android:id="@+id/person_age"
             android:layout_width="wrap_content"
@@ -41,7 +59,7 @@
             android:layout_marginTop="36dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
             android:layout_marginStart="36dp"
             android:text="@{String.format(@string/person_name_template, viewModel.userProfile.fullName)}" />
 
@@ -66,6 +84,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="36dp"
             android:paddingBottom="15dp"
+            preferredInterests="@{viewModel.userProfile.preferredInterests}"
+            interests="@{viewModel.userProfile.interests}"
             app:layout_constraintStart_toStartOf="@id/person_bio"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/person_bio">
