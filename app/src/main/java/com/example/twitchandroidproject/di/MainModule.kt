@@ -2,9 +2,6 @@ package com.example.twitchandroidproject.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.twitchandroidproject.repository.TestDataUtil
 import com.example.twitchandroidproject.repository.api.GeolocationApiService
 import com.example.twitchandroidproject.repository.database.FrienderDatabase
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
@@ -13,8 +10,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -25,12 +20,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object MainModule {
 
-    lateinit var frienderDatabase: FrienderDatabase
-
     @Singleton
     @Provides
-    fun provideUserDatabase(@ApplicationContext applicationContext: Context): FrienderDatabase {
-        frienderDatabase = Room.databaseBuilder(
+    fun provideUserDatabase(@ApplicationContext applicationContext: Context) =
+        Room.databaseBuilder(
             applicationContext,
             FrienderDatabase::class.java,
             "friender_database"
@@ -38,30 +31,8 @@ object MainModule {
             // wipe database in case of conflicts
             // todo: remove when database model is stabilized
             .fallbackToDestructiveMigration()
-            .addCallback(object : RoomDatabase.Callback() {
-                // on create prepopulate database with test data
-                override fun onCreate(database: SupportSQLiteDatabase) {
-                    super.onCreate(database)
-
-                    val userProfileDao = frienderDatabase.userProfileDao()
-                    val userAccountDao = frienderDatabase.userAccountDao()
-
-                    GlobalScope.launch {
-                        val userProfileCount = userProfileDao.getCount()
-                        if (userProfileCount == 0) {
-                            val userAccount = TestDataUtil.createInitialUserAccount()
-                            userAccountDao.create(userAccount)
-
-                            val userProfiles = TestDataUtil.createInitialUserProfiles()
-                            userProfileDao.insertAll(userProfiles)
-                        }
-                    }
-                }
-            })
             .build()
 
-        return frienderDatabase
-    }
 
     @Singleton
     @Provides
