@@ -2,18 +2,16 @@ package com.example.twitchandroidproject.ui
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.PersonCardBinding
 import com.example.twitchandroidproject.repository.model.UserProfile
+import com.example.twitchandroidproject.ui.utils.getColorFromAttr
 import com.google.android.material.chip.Chip
 
 class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener) : RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder>() {
@@ -58,7 +56,7 @@ class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener
         // Create a new view, which defines the UI of the list item
         val inflater = LayoutInflater.from(viewGroup.context)
         binding = PersonCardBinding.inflate(inflater)
-        val holder =  ViewHolder(binding.root, binding, onProfileClickListener)
+        val holder = ViewHolder(binding.root, binding, onProfileClickListener)
 
         context = viewGroup.context
 
@@ -82,15 +80,5 @@ class HomeRecyclerViewAdapter(var onProfileClickListener: OnProfileClickListener
         interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
         interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
         return interestBadge
-    }
-
-    @ColorInt
-    fun Context.getColorFromAttr(
-        @AttrRes attrColor: Int,
-        typedValue: TypedValue = TypedValue(),
-        resolveRefs: Boolean = true
-    ): Int {
-        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
-        return typedValue.data
     }
 }

@@ -5,6 +5,12 @@
     tools:context="com.example.twitchandroidproject.ui.MainActivity">
 
     <item
+        android:id="@+id/action_view"
+        android:icon="@drawable/ic_profile_details"
+        android:title="@string/account_fragment_menu_view"
+        app:showAsAction="collapseActionView|ifRoom" />
+
+    <item
         android:id="@+id/action_logout"
         android:title="@string/account_fragment_menu_logout"
         app:showAsAction="collapseActionView|ifRoom" />

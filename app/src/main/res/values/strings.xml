@@ -50,6 +50,8 @@
     <string name="registration_fragment_hint_password">Password</string>
     <string name="registration_fragment_hint_confirm_password">Confirm Password</string>
     <string name="registration_fragment_hint_bio">Tell the world who you are</string>
+    <string name="registration_fragment_hint_featured_interests">Choose your featured interests</string>
+    <string name="registration_fragment_hint_interests">Choose your interests</string>
     <string name="registration_fragment_get_started">Get Started</string>
 
     <!-- Account Screen -->
@@ -58,6 +60,7 @@
     <string name="account_fragment_label_availability">Availability</string>
     <string name="account_fragment_button_save">Save</string>
     <string name="account_fragment_menu_logout">Logout</string>
+    <string name="account_fragment_menu_view">View</string>
 
     <!-- Validation Errors -->
     <string name="error_validation_blank">Should not be blank</string>

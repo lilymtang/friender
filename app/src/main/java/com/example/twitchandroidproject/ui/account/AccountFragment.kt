@@ -1,6 +1,7 @@
 package com.example.twitchandroidproject.ui.account
 
 import android.app.DatePickerDialog
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.InputType
 import android.view.LayoutInflater
@@ -10,12 +11,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.databinding.FragmentAccountBinding
+import com.example.twitchandroidproject.ui.HomeContainerFragmentDirections
+import com.example.twitchandroidproject.ui.utils.getColorFromAttr
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
@@ -67,6 +72,87 @@ class AccountFragment @Inject constructor() : Fragment() {
             }
         }
 
+        binding.preferredInterestsTextView.setOnItemClickListener { adapterView, _, position, _ ->
+
+            val selectedItem = adapterView.getItemAtPosition(position).toString()
+            viewModel.addPreferredInterest(selectedItem)
+
+            binding.preferredInterestsTextView.setText("")
+        }
+
+        binding.interestsTextView.setOnItemClickListener { adapterView, _, position, _ ->
+
+            val selectedItem = adapterView.getItemAtPosition(position).toString()
+            viewModel.addInterest(selectedItem)
+
+            binding.interestsTextView.setText("")
+        }
+
+        // creating chips from fragment instead of via binding adapter
+        // to allow settings setOnCloseIconClickListener on each chip
+        // (binding adapters do not support passing lambda functions from xml)
+
+        viewModel.preferredInterests.observe(viewLifecycleOwner) { preferredInterests ->
+            val chipGroup = binding.preferredInterestsChipGroup
+            chipGroup.removeAllViews()
+
+            if (preferredInterests != null) {
+
+                val chipColor = ColorStateList.valueOf(
+                    requireContext().getColorFromAttr(R.attr.preferredInterestColor)
+                )
+                val chipTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+
+                for (preferredInterest in preferredInterests) {
+                    val chip = Chip(chipGroup.context).apply {
+                        text = preferredInterest
+
+                        chipBackgroundColor = chipColor
+                        setTextColor(chipTextColor)
+
+                        isCloseIconVisible = true
+                        closeIconTint = ColorStateList.valueOf(chipTextColor)
+
+                        setOnCloseIconClickListener {
+                            viewModel.removePreferredInterest(preferredInterest)
+                        }
+                    }
+
+                    chipGroup.addView(chip)
+                }
+            }
+        }
+
+        viewModel.interests.observe(viewLifecycleOwner) { interests ->
+            val chipGroup = binding.interestsChipGroup
+            chipGroup.removeAllViews()
+
+            if (interests != null) {
+                val chipColor = ColorStateList.valueOf(
+                    requireContext().getColorFromAttr(R.attr.interestColor)
+                )
+                val chipTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+
+                for (interest in interests) {
+                    val chip = Chip(chipGroup.context).apply {
+                        text = interest
+
+                        chipBackgroundColor = chipColor
+                        setTextColor(chipTextColor)
+
+                        isCloseIconVisible = true
+                        closeIconTint = ColorStateList.valueOf(chipTextColor)
+
+                        setOnCloseIconClickListener {
+                            viewModel.removeInterest(interest)
+                        }
+                    }
+
+                    chipGroup.addView(chip)
+                }
+            }
+        }
+
         // subscribe to force viewmodel to start loading required data
         viewModel.currentUserProfile.observe(viewLifecycleOwner) {
             // we don't need to do anything extra here as data is mapped via databinding
@@ -103,6 +189,15 @@ class AccountFragment @Inject constructor() : Fragment() {
                     }
                 })
             }
+            R.id.action_view -> {
+                findNavController().navigate(
+                    HomeContainerFragmentDirections.actionHomeContainerFragmentToProfileFragment(
+                        viewModel.currentUserProfile.value!!.id
+                    )
+                )
+            }
+
+
         }
         return super.onOptionsItemSelected(item)
     }

@@ -47,6 +47,37 @@ class AccountViewModel @Inject constructor(
 
     val isAvailableToHangout = MutableLiveData<Boolean?>(null)
 
+    private val allAvailableInterests: LiveData<List<String>?> =
+        MutableLiveData(frienderRepository.getAvailableInterests())
+
+    val preferredInterests = MutableLiveData<List<String>?>(null)
+
+    val interests = MutableLiveData<List<String>?>(null)
+
+    val availableInterests =
+        transformationsMapAll(
+            listOf(
+                preferredInterests,
+                interests,
+                allAvailableInterests
+            )
+        ) { values ->
+            // get values for each live data we are tracking
+
+            // we need to cast values to  List<String> as transformationsMapAll
+            // doesn't preserve correct type when returning values
+
+            val preferredInterestValues = values[0] as? List<String> ?: listOf()
+            val interestValues = values[1] as? List<String> ?: listOf()
+            val allAvailableInterestValues = values[2] as? List<String> ?: listOf()
+
+            // remove from the list values that already selected as preferred interests / interests
+            allAvailableInterestValues.toMutableList().apply {
+                removeAll(preferredInterestValues)
+                removeAll(interestValues)
+            }
+        }
+
     // To enable get started button we want to make sure that
     // there are no errors on each field and all field values are entered
     private val allFieldErrorsAreNull = transformationsMapAll(
@@ -86,6 +117,8 @@ class AccountViewModel @Inject constructor(
         bio.value = userProfile.bio
         profilePicture.value = userProfile.profilePicture
         isAvailableToHangout.value = userProfile.isAvailableToHangout
+        preferredInterests.value = userProfile.preferredInterests
+        interests.value = userProfile.interests
     }
 
 
@@ -115,6 +148,8 @@ class AccountViewModel @Inject constructor(
             userProfile.fullName = displayName.value!!
             userProfile.dateOfBirth = dateOfBirth.value!!
             userProfile.bio = bio.value!!
+            userProfile.preferredInterests = preferredInterests.value!!
+            userProfile.interests = interests.value!!
 
             viewModelScope.launch {
                 try {
@@ -130,6 +165,38 @@ class AccountViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun addPreferredInterest(interest: String) {
+        val existingItems = preferredInterests.value ?: listOf()
+        val updatedItems = existingItems.toMutableList().apply {
+            add(0, interest)
+        }
+        preferredInterests.value = updatedItems
+    }
+
+    fun removePreferredInterest(interest: String) {
+        val existingItems = preferredInterests.value ?: listOf()
+        val updatedItems = existingItems.toMutableList().apply {
+            remove(interest)
+        }
+        preferredInterests.value = updatedItems
+    }
+
+    fun addInterest(interest: String) {
+        val existingItems = interests.value ?: listOf()
+        val updatedItems = existingItems.toMutableList().apply {
+            add(0, interest)
+        }
+        interests.value = updatedItems
+    }
+
+    fun removeInterest(interest: String) {
+        val existingItems = interests.value ?: listOf()
+        val updatedItems = existingItems.toMutableList().apply {
+            remove(interest)
+        }
+        interests.value = updatedItems
     }
 
     fun logout() {

@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.util.TypedValue
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.AttrRes
@@ -87,7 +89,7 @@ class BindingAdapters {
         @JvmStatic
         fun dateOfBirthToAge(view: TextView, dateOfBirth: Date?) {
             // LiveData is null initially because of async Room call in ProfileFragmentViewModel
-            if(dateOfBirth == null){
+            if (dateOfBirth == null) {
                 view.text = Date().toString()
                 return
             }
@@ -114,6 +116,22 @@ class BindingAdapters {
         fun setProfileImage(imageView: ImageView, profileImage: Bitmap?) {
             profileImage?.let {
                 imageView.setImageBitmap(profileImage)
+            }
+        }
+
+        @BindingAdapter("availableInterests")
+        @JvmStatic
+        fun setInterests(
+            autoCompleteTextView: AutoCompleteTextView,
+            availableInterests: List<String>?
+        ) {
+            if (availableInterests != null) {
+                val adapter = ArrayAdapter(
+                    autoCompleteTextView.context,
+                    R.layout.interest_item,
+                    availableInterests
+                )
+                autoCompleteTextView.setAdapter(adapter)
             }
         }
     }

@@ -122,6 +122,56 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components"
+                    android:hint="@string/registration_fragment_hint_featured_interests">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/preferredInterestsTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:availableInterests="@{viewModel.availableInterests}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/preferredInterestsChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components">
+
+                    <!-- Chips will be added dynamically from fragment. -->
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/registration_fragment_hint_interests"
+                    android:paddingTop="@dimen/margin_components">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/interestsTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:availableInterests="@{viewModel.availableInterests}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/interestsChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_components">
+
+                    <!-- Chips will be added dynamically from fragment. -->
+
+                </com.google.android.material.chip.ChipGroup>
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/getStartedButton"
                     android:layout_width="match_parent"
