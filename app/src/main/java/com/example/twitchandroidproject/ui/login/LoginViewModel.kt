@@ -1,6 +1,7 @@
 package com.example.twitchandroidproject.ui.login
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
@@ -25,8 +26,16 @@ class LoginViewModel @Inject constructor(
 
     //Password error messages
     private val _passwordErrorMessage = MutableLiveData<String?>()
-    val passwordErrorMessage: LiveData<String?>
-        get() = _passwordErrorMessage
+    val passwordErrorMessage: LiveData<String> = MediatorLiveData<String>().apply {
+        // if we error message from API, display it
+        addSource(_passwordErrorMessage) { errorMessage ->
+            value = errorMessage
+        }
+        // if user changed password value, clear existing error message
+        addSource(password) {
+            value = ""
+        }
+    }
 
     // status of signin button (disabled/enabled)
     // changed each time email or password property values are changed
