@@ -57,7 +57,6 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/usernameText"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,6 +66,7 @@
                     app:errorMessage="@{viewModel.displayNameValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernameText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@={viewModel.displayName}" />
@@ -91,7 +91,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emailText"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,6 +100,7 @@
                     app:errorMessage="@{viewModel.emailValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -109,7 +109,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/passwordText"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,6 +118,7 @@
                     app:errorMessage="@{viewModel.passwordValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
@@ -127,7 +127,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/confirmPasswordText"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,6 +136,7 @@
                     app:errorMessage="@{viewModel.confirmedPasswordValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/confirmPasswordText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
@@ -145,7 +145,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/bioText"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -155,6 +154,7 @@
                     app:errorMessage="@{viewModel.bioValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/bioText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textMultiLine"

@@ -138,6 +138,8 @@ class SecurityFrienderRepositoryTest {
             currentUserProfile
         )
 
+        repository.logout()
+
         // WHEN
 
         // not logged in
