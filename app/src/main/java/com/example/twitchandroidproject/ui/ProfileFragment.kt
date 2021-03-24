@@ -34,6 +34,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.profileFragment = this
 
         viewModel.userProfile.observe(viewLifecycleOwner, Observer { userProfile ->
+            // Show Add Friend button only if user is of type OTHER
             when(userProfile.userProfileType) {
                 UserProfile.UserProfileType.OTHER -> binding.profileFab.show()
                 else -> binding.profileFab.hide()

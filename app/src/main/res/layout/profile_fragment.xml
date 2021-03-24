@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.example.twitchandroidproject.ui.ProfileFragmentViewModel" />
@@ -18,8 +19,11 @@
         android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="@{viewModel.profileIsVisible ? View.VISIBLE: View.GONE}"
+        >
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -37,7 +41,6 @@
                 app:popupTheme="@style/Theme.TwitchAndroidProject.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <TextView
             android:id="@+id/person_age"
