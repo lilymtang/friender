@@ -1,6 +1,7 @@
 package com.example.twitchandroidproject.ui.registration
 
 import android.app.Application
+import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.twitchandroidproject.R
 import com.example.twitchandroidproject.repository.FrienderRepository
 import com.example.twitchandroidproject.repository.model.UserProfile
-import com.example.twitchandroidproject.ui.utils.createRandomProfilePicture
 import com.example.twitchandroidproject.ui.utils.dateOfBirthValidationObserver
 import com.example.twitchandroidproject.ui.utils.notBlankValidationObserver
 import com.example.twitchandroidproject.ui.utils.transformationsMapAll
@@ -24,9 +24,7 @@ class RegistrationViewModel @Inject constructor(
     private val frienderRepository: FrienderRepository,
 ) : AndroidViewModel(application) {
 
-    // initialize profile image with random color until actual picture is profiled so that
-    // user always an image even if user did not provided one
-    val profilePicture = MutableLiveData(createRandomProfilePicture())
+    val profilePicture = MutableLiveData<Bitmap>(null)
 
     val displayName = MutableLiveData<String?>(null)
     val displayNameValidationError = notBlankValidationObserver(application, displayName)

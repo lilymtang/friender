@@ -53,6 +53,7 @@
     <string name="registration_fragment_hint_featured_interests">Choose your featured interests</string>
     <string name="registration_fragment_hint_interests">Choose your interests</string>
     <string name="registration_fragment_get_started">Get Started</string>
+    <string name="registration_fragment_content_description_image_profile">Profile Image</string>
 
     <!-- Account Screen -->
     <string name="account_fragment_message_profile_updated">Your Profile has been successfully updated</string>

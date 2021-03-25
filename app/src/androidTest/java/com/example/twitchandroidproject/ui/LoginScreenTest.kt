@@ -3,6 +3,7 @@ package com.example.twitchandroidproject.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -59,9 +60,9 @@ class LoginScreenTest {
     fun loginButtonEnabledWhenEmailAndPasswordAreEntered() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("testEmail"))
+            .perform(typeText("testEmail"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
-            .perform(typeText("testPassword"))
+            .perform(typeText("testPassword"), closeSoftKeyboard())
 
         // Expected
 
@@ -73,9 +74,9 @@ class LoginScreenTest {
     fun loginWithIncorrectPasswordDisplaysIncorrectPasswordError() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("user"))
+            .perform(typeText("user"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
-            .perform(typeText("testPassword"))
+            .perform(typeText("testPassword"), closeSoftKeyboard())
         onView(withId(R.id.signInButton))
             .perform(click())
 
@@ -89,9 +90,9 @@ class LoginScreenTest {
     fun loginWithIncorrectEmailDisplaysNotRegisteredUserError() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("testEmail"))
+            .perform(typeText("testEmail"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
-            .perform(typeText("testPassword"))
+            .perform(typeText("testPassword"), closeSoftKeyboard())
         onView(withId(R.id.signInButton))
             .perform(click())
 
@@ -105,9 +106,9 @@ class LoginScreenTest {
     fun successfulLoginOpensHomeScreen() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("user"))
+            .perform(typeText("user"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
-            .perform(typeText("user"))
+            .perform(typeText("user"), closeSoftKeyboard())
         onView(withId(R.id.signInButton))
             .perform(click())
 

@@ -9,4 +9,9 @@
     <dimen name="margin_components">16dp</dimen>
     <dimen name="profile_image_horiz_margin">20dp</dimen>
     <dimen name="profile_image_vert_margin">15dp</dimen>
+
+    <!-- Profile Image on Accounts and Registration Screens -->
+    <dimen name="account_profile_image_height">128dp</dimen>
+    <dimen name="account_profile_image_corner_radius">10dp</dimen>
+    <dimen name="account_profile_title_padding_vertical">4dp</dimen>
 </resources>

@@ -16,4 +16,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="available">#05b714</color>
     <color name="unavailable">#ccc</color>
+    <color name="account_profile_image_title_background">#AA000000</color>
 </resources>
