@@ -28,6 +28,8 @@ class HomeContainerFragment : Fragment() {
     @Inject
     lateinit var accountFragment: AccountFragment
 
+    private var currentlyDisplayedFragment: Fragment? = null
+
     private val viewModel: HomeContainerViewModel by viewModels()
 
     lateinit var binding: FragmentHomeContainerBinding
@@ -39,6 +41,23 @@ class HomeContainerFragment : Fragment() {
     ): View {
 
         binding = FragmentHomeContainerBinding.inflate(inflater, container, false)
+
+        // add created fragments to homeNavViewItemContainer
+        // to allow switching between them later w/o recreating them on switch
+        // note we are checking currentlyDisplayedFragment to avoid re-adding
+        // fragments on configuration change
+        if (currentlyDisplayedFragment == null) {
+            childFragmentManager.commit {
+                add(R.id.homeNavViewItemContainer, accountFragment)
+                detach(accountFragment)
+
+                add(R.id.homeNavViewItemContainer, friendsFragment)
+                detach(friendsFragment)
+
+                add(R.id.homeNavViewItemContainer, homeFragment)
+                currentlyDisplayedFragment = homeFragment
+            }
+        }
 
         // manually switching between tabs in home container
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -103,10 +122,17 @@ class HomeContainerFragment : Fragment() {
 
     // sets content for upper part of the view
     private fun setNavItemView(fragmentToDisplay: Fragment) {
+
+        // when switching between fragments use attach / detach to avoid recreating fragments
+        // per https://developer.android.com/guide/fragments/lifecycle
+        // fragments should not be reused if replace() is called
         childFragmentManager.commit {
             setReorderingAllowed(true)
 
-            replace(R.id.homeNavViewItemContainer, fragmentToDisplay)
+            currentlyDisplayedFragment?.let { detach(it) }
+
+            attach(fragmentToDisplay)
+            currentlyDisplayedFragment = fragmentToDisplay
         }
     }
 }

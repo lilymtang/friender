@@ -25,11 +25,22 @@ class AccountViewModel @Inject constructor(
     private val frienderRepository: FrienderRepository,
 ) : AndroidViewModel(application) {
 
+    // store previously loaded user profile so that on configuration change
+    // we don't overwrite dirty values in individual fields
+    // if user profile is reloaded again
+    private var _previouslyLoadedUserProfile: UserProfile? = null
+
     val currentUserProfile = Transformations.map(
         frienderRepository.getCurrentUserProfile().toLiveData()
     ) { userProfile ->
-        // when data is retrieved we want to set initial values for each field
-        setInitialFieldValues(userProfile)
+
+        // when user profile is retrieved and it is not the same as before
+        // we want to set initial values for each field
+        if (_previouslyLoadedUserProfile != userProfile) {
+            setInitialFieldValues(userProfile)
+
+            _previouslyLoadedUserProfile = userProfile
+        }
 
         userProfile
     }
@@ -143,7 +154,7 @@ class AccountViewModel @Inject constructor(
     }
 
     fun save() {
-        currentUserProfile.value?.let { userProfile ->
+        _previouslyLoadedUserProfile?.let { userProfile ->
             userProfile.isAvailableToHangout = isAvailableToHangout.value!!
             userProfile.fullName = displayName.value!!
             userProfile.dateOfBirth = dateOfBirth.value!!
