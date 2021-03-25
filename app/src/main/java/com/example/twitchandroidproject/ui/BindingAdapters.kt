@@ -114,8 +114,18 @@ class BindingAdapters {
         @BindingAdapter("profileImage")
         @JvmStatic
         fun setProfileImage(imageView: ImageView, profileImage: Bitmap?) {
-            profileImage?.let {
-                imageView.setImageBitmap(profileImage)
+            imageView.apply {
+                if (profileImage != null) {
+                    setImageBitmap(profileImage)
+                } else {
+                    // set placeholder image
+                    setImageDrawable(
+                        ContextCompat.getDrawable(
+                            imageView.context,
+                            R.drawable.avatar
+                        )
+                    )
+                }
             }
         }
 
