@@ -19,7 +19,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -42,6 +42,50 @@
                     app:menu="@menu/menu_account"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/margin_side"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/account_profile_image_height"
+                        android:layout_height="@dimen/account_profile_image_height"
+                        android:background="@null"
+                        app:cardCornerRadius="@dimen/account_profile_image_corner_radius">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/edit_profile_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/registration_fragment_content_description_image_profile"
+                                app:profileImage="@{viewModel.profilePicture}"
+                                tools:src="@tools:sample/avatars" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginTop="@dimen/margin_components"
+                                android:background="@color/account_profile_image_title_background"
+                                android:gravity="center"
+                                android:paddingVertical="@dimen/chip_vert_padding"
+                                android:text="@{viewModel.displayName}"
+                                android:textAppearance="?attr/textAppearanceSubtitle1"
+                                android:textColor="?attr/colorOnPrimary"
+                                tools:text="Jane Doe" />
+
+                        </FrameLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -49,13 +93,11 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/margin_side"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="@dimen/margin_side"
             android:clipToPadding="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
+                android:layout_margin="@dimen/margin_side"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -184,24 +226,6 @@
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:background="@null"
-            app:cardCornerRadius="64dp"
-            app:cardElevation="10dp"
-            app:layout_anchor="@+id/app_bar"
-            app:layout_anchorGravity="bottom|center">
-
-            <ImageView
-                android:id="@+id/edit_profile_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:profileImage="@{viewModel.profilePicture}"
-                tools:src="@tools:sample/avatars" />
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
