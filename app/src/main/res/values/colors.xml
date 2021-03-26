@@ -17,4 +17,13 @@
     <color name="available">#05b714</color>
     <color name="unavailable">#ccc</color>
     <color name="account_profile_image_title_background">#AA000000</color>
+    <!-- Theme Colors -->
+    <color name="primaryColor">#1a237e</color>
+    <color name="primaryLightColor">#534bae</color>
+    <color name="primaryDarkColor">#000051</color>
+    <color name="secondaryColor">#ffd600</color>
+    <color name="secondaryLightColor">#ffff52</color>
+    <color name="secondaryDarkColor">#c7a500</color>
+    <color name="primaryTextColor">#ffffff</color>
+    <color name="secondaryTextColor">#000000</color>
 </resources>

@@ -3,7 +3,6 @@ package com.example.twitchandroidproject.ui
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.util.TypedValue
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
@@ -11,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.twitchandroidproject.R
+import com.example.twitchandroidproject.ui.utils.getColorFromAttr
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
@@ -20,7 +20,6 @@ import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 import java.util.Date
 import java.util.Locale
-import com.example.twitchandroidproject.ui.utils.getColorFromAttr
 
 class BindingAdapters {
     companion object {
@@ -28,11 +27,12 @@ class BindingAdapters {
         @JvmStatic
         fun populatePreferredInterests(chipGroup: ChipGroup, preferredInterests: List<String>?) {
             // LiveData is null initially because of async Room call in ProfileFragmentViewModel
-            if(preferredInterests == null) {
+            if (preferredInterests == null) {
                 return
             }
 
-            chipGroup.chipSpacingVertical = chipGroup.context.resources.getDimensionPixelSize(R.dimen.chip_vert_padding)
+            chipGroup.chipSpacingVertical =
+                chipGroup.context.resources.getDimensionPixelSize(R.dimen.chip_vert_padding)
             chipGroup.removeAllViews()
 
             for (interest in preferredInterests) {
@@ -40,7 +40,8 @@ class BindingAdapters {
                     createInterestChip(
                         chipGroup.context,
                         interest,
-                        chipGroup.context.getColorFromAttr(R.attr.preferredInterestColor)
+                        chipGroup.context.getColorFromAttr(R.attr.preferredInterestColor),
+                        chipGroup.context.getColorFromAttr(R.attr.interestTextColor)
                     )
                 )
             }
@@ -50,7 +51,7 @@ class BindingAdapters {
         @JvmStatic
         fun populateInterests(chipGroup: ChipGroup, interests: List<String>?) {
             // LiveData is null initially because of async Room call in ProfileFragmentViewModel
-            if(interests == null) {
+            if (interests == null) {
                 return
             }
 
@@ -59,16 +60,22 @@ class BindingAdapters {
                     createInterestChip(
                         chipGroup.context,
                         interest,
-                        chipGroup.context.getColorFromAttr(R.attr.interestColor)
+                        chipGroup.context.getColorFromAttr(R.attr.interestColor),
+                        chipGroup.context.getColorFromAttr(R.attr.interestTextColor)
                     )
                 )
             }
         }
 
-        private fun createInterestChip(context: Context, interest: String, chipColor: Int): TextView {
+        private fun createInterestChip(
+            context: Context,
+            interest: String,
+            chipColor: Int,
+            chipTextColor: Int
+        ): TextView {
             val interestBadge = Chip(context)
             interestBadge.text = interest
-            interestBadge.setTextColor(ContextCompat.getColor(context, R.color.white))
+            interestBadge.setTextColor(ColorStateList.valueOf(chipTextColor))
             interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
             interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
             return interestBadge
