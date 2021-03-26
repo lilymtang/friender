@@ -11,7 +11,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -101,7 +100,7 @@ class AccountFragment @Inject constructor() : Fragment() {
                 val chipColor = ColorStateList.valueOf(
                     requireContext().getColorFromAttr(R.attr.preferredInterestColor)
                 )
-                val chipTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+                val chipTextColor = requireContext().getColorFromAttr(R.attr.interestTextColor)
 
                 for (preferredInterest in preferredInterests) {
                     val chip = Chip(chipGroup.context).apply {
@@ -131,7 +130,7 @@ class AccountFragment @Inject constructor() : Fragment() {
                 val chipColor = ColorStateList.valueOf(
                     requireContext().getColorFromAttr(R.attr.interestColor)
                 )
-                val chipTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+                val chipTextColor = requireContext().getColorFromAttr(R.attr.interestTextColor)
 
                 for (interest in interests) {
                     val chip = Chip(chipGroup.context).apply {

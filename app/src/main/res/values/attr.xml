@@ -2,4 +2,5 @@
 <resources>
     <attr name="preferredInterestColor" format="reference|color" />
     <attr name="interestColor" format="reference|color" />
+    <attr name="interestTextColor" format="reference|color" />
 </resources>
