@@ -18,11 +18,11 @@ The application provides the following features:
 |:-----------:|:------:|:-------------------:|
 | XML | ✅ | All Fragments have corresponding xml files |
 | Usage of multiple Material Design Components | ✅ | Application is built using components provided by Android Material Design component library. Example components used in the app: Lists (Recycler View), Bottom Navigation, FAB, Switch and others. |
-| Animations |  | |
+| Animations | ✅  | |
 | ConstraintLayout | ✅ | |
 | RecyclerView | ✅ | The list of friends and list of other users nearby are displayed using Recycler View  |
-| Empty state corner case handling |  | |
-| Loading and error screens |  | |
+| Empty state corner case handling | ✅ | |
+| Loading and error screens | ✅  | |
 
 ## Back End
 
@@ -32,12 +32,12 @@ The application provides the following features:
 | Retrofit |  | |
 | Room | ✅ | Offline data is stored using Android Room persistence library |
 | Repository Pattern | ✅ | Repository is retrieving the data from 2 data source types (local database, local resources |
-| Geolocation API |  | |
+| Geolocation API | ✅  | |
 | JSON (for stubbed friend objects) |  | |
-| *Testing* | | |
+| *Testing* | ✅  | |
 | Testing fundamentals | ✅ | Provided basic set of Unit tests for Repository and Dao objects |
 | Mockito for ‘mocking’ objects |  | |
-| Espresso for UI testing |  | |
+| Espresso for UI testing | ✅  | |
 
 # Application UI Design
 
