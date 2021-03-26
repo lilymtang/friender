@@ -53,6 +53,9 @@ class AccountViewModel @Inject constructor(
     val dateOfBirth = MutableLiveData<Date?>(null)
     val dateOfBirthValidatorError = dateOfBirthValidationObserver(application, dateOfBirth)
 
+    val phoneNumber = MutableLiveData<String?>(null)
+    val phoneNumberValidationError = notBlankValidationObserver(application, phoneNumber)
+
     val bio = MutableLiveData<String?>(null)
     val bioValidationError = notBlankValidationObserver(application, bio)
 
@@ -95,6 +98,7 @@ class AccountViewModel @Inject constructor(
         listOf(
             displayNameValidationError,
             dateOfBirthValidatorError,
+            phoneNumberValidationError,
             bioValidationError
         )
     ) { values ->
@@ -106,6 +110,7 @@ class AccountViewModel @Inject constructor(
         listOf(
             displayName,
             dateOfBirth,
+            phoneNumber,
             bio
         )
     ) { values ->
@@ -125,6 +130,7 @@ class AccountViewModel @Inject constructor(
     private fun setInitialFieldValues(userProfile: UserProfile) {
         displayName.value = userProfile.fullName
         dateOfBirth.value = userProfile.dateOfBirth
+        phoneNumber.value = userProfile.phoneNumber
         bio.value = userProfile.bio
         profilePicture.value = userProfile.profilePicture
         isAvailableToHangout.value = userProfile.isAvailableToHangout
@@ -158,6 +164,7 @@ class AccountViewModel @Inject constructor(
             userProfile.isAvailableToHangout = isAvailableToHangout.value!!
             userProfile.fullName = displayName.value!!
             userProfile.dateOfBirth = dateOfBirth.value!!
+            userProfile.phoneNumber = phoneNumber.value!!
             userProfile.bio = bio.value!!
             userProfile.preferredInterests = preferredInterests.value!!
             userProfile.interests = interests.value!!
