@@ -22,8 +22,6 @@
     <string name="home_profile_fragment_interest_1">backpacking</string>
     <string name="home_profile_fragment_interest_2">baking</string>
     <string name="home_profile_fragment_interest_3">photography</string>
-    <string name="person_card_distance">5 miles away</string>
-    <string name="person_name_template">%s,</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="friends_fragment_text">Hello friends fragment</string>
@@ -47,6 +45,7 @@
     <string name="registration_fragment_hint_display_name">Display Name</string>
     <string name="registration_fragment_hint_date_of_birth">Date of Birth</string>
     <string name="registration_fragment_hint_email">Email</string>
+    <string name="registration_fragment_hint_phone">Phone Number</string>
     <string name="registration_fragment_hint_password">Password</string>
     <string name="registration_fragment_hint_confirm_password">Confirm Password</string>
     <string name="registration_fragment_hint_bio">Tell the world who you are</string>
@@ -73,10 +72,18 @@
     <string name="friend_remove_confirmation">Friend removed.</string>
     <string name="snack_bar_undo">Undo</string>
     <string name="search">search</string>
+    <string name="distance_away_template">%s miles away</string>
+    <string name="person_name_template">%s,</string>
+    <string name="send_sms_template">Hi %s, I\'m %s from Friender!</string>
 
     <!-- Logout confirmation dialog -->
     <string name="dialog_message_logout">Are you sure you want to logout?</string>
     <string name="dialog_button_logout">Logout</string>
     <string name="dialog_button_cancel">Cancel</string>
+    <string name="friends_fragment_title">Friends</string>
+
+    <!-- Friends Screen -->
+    <string name="friends_recycler_empty_state_subtext">Start adding friends in Discover</string>
+    <string name="friends_recycler_empty_state_text">No friends yet</string>
 
 </resources>

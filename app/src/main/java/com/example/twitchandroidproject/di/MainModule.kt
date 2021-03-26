@@ -1,13 +1,17 @@
 package com.example.twitchandroidproject.di
 
+import android.app.Activity
 import android.content.Context
+import android.location.Location
 import androidx.room.Room
 import com.example.twitchandroidproject.repository.api.GeolocationApiService
 import com.example.twitchandroidproject.repository.database.FrienderDatabase
+import com.example.twitchandroidproject.ui.LocationManager
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
@@ -54,5 +58,11 @@ object MainModule {
         return object : DispatcherProvider {
             // using default dispatchers as in DispatcherProvider
         }
+    }
+
+    @Singleton
+    @Provides
+    fun provideLocationManager(@ApplicationContext context: Context): LocationManager {
+        return LocationManager(context)
     }
 }

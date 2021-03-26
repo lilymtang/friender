@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     application: Application,
-    private val frienderRepository: FrienderRepository,
+    private val frienderRepository: FrienderRepository
 ) : AndroidViewModel(application) {
 
     val profilePicture = MutableLiveData<Bitmap>(null)
@@ -31,6 +31,9 @@ class RegistrationViewModel @Inject constructor(
 
     val dateOfBirth = MutableLiveData<Date?>(null)
     val dateOfBirthValidatorError = dateOfBirthValidationObserver(application, dateOfBirth)
+
+    val phone = MutableLiveData<String?>(null)
+    val phoneValidationError = notBlankValidationObserver(application, phone)
 
     val email = MutableLiveData<String?>(null)
     val emailValidationError = notBlankValidationObserver(application, email)
@@ -64,6 +67,7 @@ class RegistrationViewModel @Inject constructor(
         listOf(
             displayNameValidationError,
             dateOfBirthValidatorError,
+            phoneValidationError,
             emailValidationError,
             passwordValidationError,
             confirmedPasswordValidationError,
@@ -78,6 +82,7 @@ class RegistrationViewModel @Inject constructor(
         listOf(
             displayName,
             dateOfBirth,
+            phone,
             email,
             password,
             confirmedPassword,
@@ -122,13 +127,16 @@ class RegistrationViewModel @Inject constructor(
                         isAvailableToHangout = false,
                         fullName = displayName.value!!,
                         dateOfBirth = dateOfBirth.value!!,
+                        phoneNumber = phone.value!!,
                         bio = bio.value!!,
                         profilePicture = profilePicture.value,
 
                         // we are not capturing interests / preferred interests
                         // during registration process
                         interests = listOf(),
-                        preferredInterests = listOf()
+                        preferredInterests = listOf(),
+                        latitude = 35.69756, // TODO: don't hardcode this
+                        longitude = -120.41964
                     )
                 )
 

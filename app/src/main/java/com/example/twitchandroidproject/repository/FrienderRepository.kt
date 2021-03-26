@@ -10,6 +10,7 @@ import com.example.twitchandroidproject.repository.api.GeolocationApiService
 import com.example.twitchandroidproject.repository.database.FrienderDatabase
 import com.example.twitchandroidproject.repository.model.UserAccount
 import com.example.twitchandroidproject.repository.model.UserProfile
+import com.example.twitchandroidproject.ui.LocationManager
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.withContext
@@ -20,10 +21,8 @@ import javax.inject.Singleton
 class FrienderRepository @Inject constructor(
     @ApplicationContext private val context: Context,
     private val database: FrienderDatabase,
-    private val geolocationService: GeolocationApiService,
     private val dispatcherProvider: DispatcherProvider
 ) {
-
     private var currentlyLoggedInUserEmail = MutableLiveData<String?>(null)
 
     /**
@@ -131,6 +130,16 @@ class FrienderRepository @Inject constructor(
     }
 
     /**
+     * Updates current user profile with latitude and longitude
+     * @param latitude latitude from LocationManager
+     * @param longitude latitude from LocationManager
+     */
+    suspend fun updateCurrentUserLocation(latitude: Double, longitude: Double) {
+        throwErrorIfNotLoggedIn()
+        database.userProfileDao().updateCurrentUserLocation(latitude, longitude)
+    }
+
+    /**
      * Updates current user profile to the database
      *
      * @param userProfile user profile to update (profile type must be CURRENT_USER)
@@ -138,8 +147,7 @@ class FrienderRepository @Inject constructor(
      * @throws IllegalStateException in case if user is not logged in
      */
     suspend fun addFriend(userProfile: UserProfile) {
-        // TODO: uncomment when login flow is complete
-        // throwErrorIfNotLoggedIn()
+        throwErrorIfNotLoggedIn()
 
         withContext(dispatcherProvider.io()) {
             if (userProfile.userProfileType == UserProfile.UserProfileType.OTHER) {
@@ -185,7 +193,6 @@ class FrienderRepository @Inject constructor(
             currentlyLoggedInUserEmail.value!!
         )
     }
-
 
     /**
      * Updates current user profile to the database

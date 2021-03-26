@@ -7,6 +7,15 @@
             name="person"
             type="com.example.twitchandroidproject.repository.model.UserProfile" />
     </data>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:clickable="true"
+        android:outlineProvider="none"
+        app:cardElevation="0dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
     <RelativeLayout
         android:id="@+id/friend_row"
         android:layout_width="match_parent"
@@ -41,4 +50,5 @@
             android:text="@{person.fullName}"
             tools:text="Lily"/>
     </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -47,6 +47,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="8dp"
                 tools:text="Lily"
+                android:textStyle="bold"
                 android:text="@{String.format(@string/person_name_template, person.fullName)}"
                 android:textColor="@color/black"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"

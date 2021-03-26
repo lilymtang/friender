@@ -26,8 +26,12 @@ data class UserProfile(
     var profilePicture: Bitmap? = null,
 
     var interests: List<String>,
-    var preferredInterests: List<String>
+    var preferredInterests: List<String>,
 
+    var latitude: Double,
+    var longitude: Double,
+
+    var phoneNumber: String
 ) {
 
     enum class UserProfileType {

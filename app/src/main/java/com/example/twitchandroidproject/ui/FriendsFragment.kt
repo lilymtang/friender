@@ -51,7 +51,7 @@ class FriendsFragment @Inject constructor() : Fragment(),
 
         // Create snackbar with option to undo
         removeConfirmationSnackbar = Snackbar.make(
-            binding.root, R.string.friend_remove_confirmation,
+            binding.root, resources.getString(R.string.friend_remove_confirmation),
             Snackbar.LENGTH_LONG
         )
 
@@ -74,9 +74,14 @@ class FriendsFragment @Inject constructor() : Fragment(),
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
-        viewModel.friendProfiles.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.userProfiles = it
+        viewModel.friendProfiles.observe(viewLifecycleOwner, Observer { friendProfiles ->
+            if(friendProfiles.isNullOrEmpty()) {
+                binding.friendsRecyclerEmptyLayout.visibility = View.VISIBLE
+                binding.friendsRecycler.visibility = View.INVISIBLE
+            } else {
+                adapter.userProfiles = friendProfiles
+                binding.friendsRecyclerEmptyLayout.visibility = View.INVISIBLE
+                binding.friendsRecycler.visibility = View.VISIBLE
             }
         })
 

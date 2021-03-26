@@ -30,6 +30,9 @@ interface UserProfileDao {
         "OR fullName LIKE '%' || :keyword || '%')")
     fun getUsersByKeyword(keyword: String, userProfileTypes: List<UserProfile.UserProfileType>): Flowable<List<UserProfile>>
 
+    @Query("UPDATE UserProfile SET latitude = :latitude,longitude= :longitude WHERE userProfileType = 'CURRENT_USER'")
+    suspend fun updateCurrentUserLocation(latitude: Double, longitude: Double)
+
     @Query("SELECT * FROM UserProfile WHERE userProfileType = :userProfileType AND email = :email")
     fun getByProfileTypeAndEmail(
         userProfileType: UserProfile.UserProfileType,

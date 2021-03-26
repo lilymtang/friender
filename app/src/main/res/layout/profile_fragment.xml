@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
         <variable
@@ -13,103 +14,132 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="@{viewModel.profileIsVisible ? View.VISIBLE: View.GONE}"
-        >
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:theme="@style/Theme.TwitchAndroidProject.AppBarOverlay">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_content"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/Theme.TwitchAndroidProject.PopupOverlay" />
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.profileIsVisible ? View.VISIBLE: View.GONE}">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.TwitchAndroidProject.AppBarOverlay"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/person_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            app:layout_constraintBottom_toBottomOf="@+id/person_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toEndOf="@+id/person_name"
-            app:layout_constraintTop_toTopOf="@+id/person_name"
-            app:layout_constraintVertical_bias="1.0"
-            dateOfBirth="@{viewModel.userProfile.dateOfBirth}"/>
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        app:popupTheme="@style/Theme.TwitchAndroidProject.PopupOverlay" />
 
-        <TextView
-            android:id="@+id/person_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            android:layout_marginStart="36dp"
-            android:text="@{String.format(@string/person_name_template, viewModel.userProfile.fullName)}" />
+                </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/person_bio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="36dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/person_name"
-            app:layout_constraintTop_toBottomOf="@+id/person_name"
-            android:text="@{viewModel.userProfile.bio}" />
+                <TextView
+                    android:id="@+id/person_age"
+                    dateOfBirth="@{viewModel.userProfile.dateOfBirth}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    app:layout_constraintBottom_toBottomOf="@+id/person_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.024"
+                    app:layout_constraintStart_toEndOf="@+id/person_name"
+                    app:layout_constraintTop_toTopOf="@+id/person_name"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:text="21"/>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/profile_interests_chipgroup"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="36dp"
-            android:paddingBottom="15dp"
-            preferredInterests="@{viewModel.userProfile.preferredInterests}"
-            interests="@{viewModel.userProfile.interests}"
-            app:layout_constraintStart_toStartOf="@id/person_bio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/person_bio">
-        </com.google.android.material.chip.ChipGroup>
+                <TextView
+                    android:id="@+id/person_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="36dp"
+                    android:text="@{String.format(@string/person_name_template, viewModel.userProfile.fullName)}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+                    tools:text= "Lily,"/>
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_interests_chipgroup"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/avatar" />
+                <LinearLayout
+                    android:id="@+id/location_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@id/person_name"
+                    app:layout_constraintTop_toBottomOf="@id/person_name">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                    <ImageView
+                        android:id="@+id/location_icon"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginEnd="3dp"
+                        app:srcCompat="@drawable/pin2" />
+
+                    <TextView
+                        android:id="@+id/person_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:textColor="@color/gray"
+                        tools:text="5 miles away" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/person_bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="36dp"
+                    android:text="@{viewModel.userProfile.bio}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@id/location_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/location_layout"
+                    android:textColor="@color/gray"
+                    tools:text="biobiobiobio" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/profile_interests_chipgroup"
+                    interests="@{viewModel.userProfile.interests}"
+                    preferredInterests="@{viewModel.userProfile.preferredInterests}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="36dp"
+                    android:paddingBottom="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/person_bio"
+                    app:layout_constraintTop_toBottomOf="@+id/person_bio"></com.google.android.material.chip.ChipGroup>
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profile_interests_chipgroup"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/avatar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/profile_fab"
@@ -125,6 +155,18 @@
             app:iconTint="?colorOnPrimary"
             android:onClick="@{(view) -> profileFragment.onClick(view)}"
             app:icon="@drawable/ic_baseline_person_add_24"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/send_sms_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            app:backgroundTint="?colorPrimary"
+            app:tint="?colorOnPrimary"
+            android:visibility="invisible"
+            android:onClick="@{(view) -> profileFragment.onClick(view)}"
+            app:srcCompat="@drawable/ic_baseline_textsms_24"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

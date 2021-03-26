@@ -30,7 +30,10 @@ object TestDataUtil {
                 "preferredInterest1",
                 "preferredInterest2",
                 "preferredInterest3"
-            )
+            ),
+            latitude = 35.93767,
+            longitude = -119.915,
+            phoneNumber = "440-789-2304"
         ),
         UserProfile(
             email = "user3@email.com",
@@ -45,7 +48,10 @@ object TestDataUtil {
                 "preferredInterest1",
                 "preferredInterest2",
                 "preferredInterest3"
-            )
+            ),
+            latitude = 36.01159,
+            longitude = -119.99244,
+            phoneNumber = "802-365-9358"
         ),
         UserProfile(
             email = "user4@email.com",
@@ -60,7 +66,10 @@ object TestDataUtil {
                 "preferredInterest1",
                 "preferredInterest2",
                 "preferredInterest3"
-            )
+            ),
+            latitude = 37.473,
+            longitude = -121.1904,
+            phoneNumber = "273-593-3467"
         ),
         UserProfile(
             email = "user5@email.com",
@@ -75,7 +84,10 @@ object TestDataUtil {
                 "backpacking",
                 "baking",
                 "photography"
-            )
+            ),
+            latitude = 37.87488,
+            longitude = -122.41964,
+            phoneNumber = "949-930-2835"
         ),
         UserProfile(
             email = "user6@email.com",
@@ -90,7 +102,10 @@ object TestDataUtil {
                 "art",
                 "yoga",
                 "running"
-            )
+            ),
+            latitude = 37.77488,
+            longitude = -122.41964,
+            phoneNumber = "504-867-8220"
         ),
         UserProfile(
             email = "user7@email.com",
@@ -105,7 +120,10 @@ object TestDataUtil {
                 "rock climbing",
                 "singing",
                 "piano"
-            )
+            ),
+            latitude = 34.77488,
+            longitude = -120.41964,
+            phoneNumber = "812-236-6573"
         ),
         UserProfile(
             email = "user8@email.com",
@@ -120,7 +138,10 @@ object TestDataUtil {
                 "backpacking",
                 "baking",
                 "photography"
-            )
+            ),
+            latitude = 35.77488,
+            longitude = -119.41964,
+            phoneNumber = "360-360-5243"
         ),
         UserProfile(
             email = "user9@email.com",
@@ -133,7 +154,10 @@ object TestDataUtil {
             interests = listOf("interest1", "interest2", "interest3"),
             preferredInterests = listOf(
                 "art"
-            )
+            ),
+            latitude = 37.69756,
+            longitude = -120.41964,
+            phoneNumber = "407-300-1660"
         ),
         UserProfile(
             email = "user10@email.com",
@@ -147,7 +171,10 @@ object TestDataUtil {
             preferredInterests = listOf(
                 "rock climbing",
                 "singing"
-            )
+            ),
+            latitude = 35.69756,
+            longitude = -120.41964,
+            phoneNumber = "996-347-5641"
         )
     )
 
@@ -165,7 +192,10 @@ object TestDataUtil {
                 "preferredInterest1",
                 "preferredInterest2",
                 "preferredInterest3"
-            )
+            ),
+            latitude = 37.80488,
+            longitude = -122.41964,
+            phoneNumber = "461-268-7430"
         )
 
     fun createInitialUserAccount() =

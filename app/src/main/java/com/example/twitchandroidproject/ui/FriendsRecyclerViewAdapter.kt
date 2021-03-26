@@ -19,7 +19,7 @@ class FriendsRecyclerViewAdapter(var onProfileClickListener: HomeRecyclerViewAda
         }
 
     class ViewHolder(itemView: View,
-                     private val binding: FriendRowBinding,
+                     val binding: FriendRowBinding,
                      private val onProfileClickListener: HomeRecyclerViewAdapter.OnProfileClickListener)
         : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         // Set click listener to this class

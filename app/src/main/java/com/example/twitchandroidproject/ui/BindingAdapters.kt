@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.example.twitchandroidproject.R
@@ -22,6 +20,7 @@ import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 import java.util.Date
 import java.util.Locale
+import com.example.twitchandroidproject.ui.utils.getColorFromAttr
 
 class BindingAdapters {
     companion object {
@@ -73,16 +72,6 @@ class BindingAdapters {
             interestBadge.setEnsureMinTouchTargetSize(false) // Sets minimum padding of chip to 0
             interestBadge.chipBackgroundColor = ColorStateList.valueOf(chipColor)
             return interestBadge
-        }
-
-        @ColorInt
-        fun Context.getColorFromAttr(
-            @AttrRes attrColor: Int,
-            typedValue: TypedValue = TypedValue(),
-            resolveRefs: Boolean = true
-        ): Int {
-            theme.resolveAttribute(attrColor, typedValue, resolveRefs)
-            return typedValue.data
         }
 
         @BindingAdapter("dateOfBirth")
