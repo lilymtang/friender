@@ -74,7 +74,7 @@ class LoginScreenTest {
     fun loginWithIncorrectPasswordDisplaysIncorrectPasswordError() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("user"), closeSoftKeyboard())
+            .perform(typeText("lily@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
             .perform(typeText("testPassword"), closeSoftKeyboard())
         onView(withId(R.id.signInButton))
@@ -106,9 +106,9 @@ class LoginScreenTest {
     fun successfulLoginOpensHomeScreen() {
 
         onView(withId(R.id.emailText))
-            .perform(typeText("user"), closeSoftKeyboard())
+            .perform(typeText("lily@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.passwordText))
-            .perform(typeText("user"), closeSoftKeyboard())
+            .perform(typeText("lily"), closeSoftKeyboard())
         onView(withId(R.id.signInButton))
             .perform(click())
 
