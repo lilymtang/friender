@@ -155,9 +155,10 @@
                     app:errorMessage="@{viewModel.phoneNumberValidationError}">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/phoneNumberField"
+                        android:id="@+id/phoneText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="phone"
                         android:text="@={viewModel.phoneNumber}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
