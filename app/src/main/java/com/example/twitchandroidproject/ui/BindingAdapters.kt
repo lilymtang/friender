@@ -121,9 +121,12 @@ class BindingAdapters {
         fun setProfileImage(imageView: ImageView, profileImage: String?) {
             imageView.apply {
                 if (profileImage != null) {
+                    val imageSize =
+                        imageView.context.resources.getDimension(R.dimen.account_profile_image_height)
+
                     Picasso.get()
                         .load(profileImage)
-                        .resize(imageView.width, imageView.height)
+                        .resize(imageSize.toInt(), imageSize.toInt())
                         .centerCrop()
                         .placeholder(R.drawable.avatar)
                         .error(R.drawable.avatar)
