@@ -60,7 +60,10 @@ class UserProfileDaoTest {
                 "preferredInterest1",
                 "preferredInterest2",
                 "preferredInterest3"
-            )
+            ),
+            latitude = 0.0,
+            longitude = 0.0,
+            phoneNumber = "1234567890"
         )
 
         // WHEN

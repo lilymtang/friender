@@ -63,6 +63,9 @@ class RegistrationScreenTest {
         onView(withId(R.id.emailText))
             .perform(typeText("testEmail"), closeSoftKeyboard())
 
+        onView(withId(R.id.phoneText))
+            .perform(typeText("1234567890"), closeSoftKeyboard())
+
         onView(withId(R.id.passwordText))
             .perform(typeText("testPassword"), closeSoftKeyboard())
 
@@ -75,6 +78,7 @@ class RegistrationScreenTest {
         // Expected
 
         onView(withId(R.id.getStartedButton))
+            .perform(scrollTo())
             .check(matches(ViewMatchers.isEnabled()))
     }
 
