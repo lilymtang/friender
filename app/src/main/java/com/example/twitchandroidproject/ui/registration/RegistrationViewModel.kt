@@ -1,7 +1,6 @@
 package com.example.twitchandroidproject.ui.registration
 
 import android.app.Application
-import android.graphics.Bitmap
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,7 +23,7 @@ class RegistrationViewModel @Inject constructor(
     private val frienderRepository: FrienderRepository
 ) : AndroidViewModel(application) {
 
-    val profilePicture = MutableLiveData<Bitmap>(null)
+    val profilePicture = MutableLiveData<String?>()
 
     val displayName = MutableLiveData<String?>(null)
     val displayNameValidationError = notBlankValidationObserver(application, displayName)

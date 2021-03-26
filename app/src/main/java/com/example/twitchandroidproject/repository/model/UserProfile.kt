@@ -1,7 +1,5 @@
 package com.example.twitchandroidproject.repository.model
 
-import android.graphics.Bitmap
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.Date
@@ -22,8 +20,7 @@ data class UserProfile(
     var dateOfBirth: Date,
     var bio: String,
 
-    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    var profilePicture: Bitmap? = null,
+    var profilePicture: String? = null,
 
     var interests: List<String>,
     var preferredInterests: List<String>,

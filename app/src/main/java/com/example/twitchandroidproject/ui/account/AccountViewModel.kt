@@ -45,7 +45,7 @@ class AccountViewModel @Inject constructor(
         userProfile
     }
 
-    val profilePicture = MutableLiveData<Bitmap?>(null)
+    val profilePicture = MutableLiveData<String?>(null)
 
     var displayName = MutableLiveData<String?>(null)
     val displayNameValidationError = notBlankValidationObserver(application, displayName)

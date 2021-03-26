@@ -2,7 +2,6 @@ package com.example.twitchandroidproject.ui
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
@@ -14,6 +13,7 @@ import com.example.twitchandroidproject.ui.utils.getColorFromAttr
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.textfield.TextInputLayout
+import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -23,6 +23,15 @@ import java.util.Locale
 
 class BindingAdapters {
     companion object {
+        @BindingAdapter("imageUrl")
+        @JvmStatic
+        fun loadImage(view: ImageView, imageUrl: String?) {
+            Picasso.get()
+                .load(imageUrl)
+                .error(R.drawable.avatar)
+                .into(view)
+        }
+
         @BindingAdapter("preferredInterests")
         @JvmStatic
         fun populatePreferredInterests(chipGroup: ChipGroup, preferredInterests: List<String>?) {
@@ -109,10 +118,16 @@ class BindingAdapters {
 
         @BindingAdapter("profileImage")
         @JvmStatic
-        fun setProfileImage(imageView: ImageView, profileImage: Bitmap?) {
+        fun setProfileImage(imageView: ImageView, profileImage: String?) {
             imageView.apply {
                 if (profileImage != null) {
-                    setImageBitmap(profileImage)
+                    Picasso.get()
+                        .load(profileImage)
+                        .resize(imageView.width, imageView.height)
+                        .centerCrop()
+                        .placeholder(R.drawable.avatar)
+                        .error(R.drawable.avatar)
+                        .into(imageView)
                 } else {
                     // set placeholder image
                     setImageDrawable(

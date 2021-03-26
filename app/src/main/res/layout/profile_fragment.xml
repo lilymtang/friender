@@ -113,19 +113,21 @@
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/profile_interests_chipgroup"
-                    interests="@{viewModel.userProfile.interests}"
-                    preferredInterests="@{viewModel.userProfile.preferredInterests}"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="36dp"
                     android:paddingBottom="15dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    preferredInterests="@{viewModel.userProfile.preferredInterests}"
+                    interests="@{viewModel.userProfile.interests}"
                     app:layout_constraintStart_toStartOf="@id/person_bio"
-                    app:layout_constraintTop_toBottomOf="@+id/person_bio"></com.google.android.material.chip.ChipGroup>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/person_bio">
+                </com.google.android.material.chip.ChipGroup>
+
 
                 <ImageView
-                    android:id="@+id/image"
+                    android:id="@+id/profile_image"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
@@ -136,11 +138,14 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/profile_interests_chipgroup"
                     app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/avatar" />
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    imageUrl="@{viewModel.userProfile.profilePicture}"
+                    />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/profile_fab"
             android:layout_width="wrap_content"

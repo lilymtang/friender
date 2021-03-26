@@ -29,7 +29,7 @@
             android:layout_width="@dimen/friend_row_profile_image"
             android:layout_height="@dimen/friend_row_profile_image"
             android:layout_centerVertical="true"
-            android:src="@drawable/avatar"/>
+            imageUrl="@{person.profilePicture}"/>
 
         <ImageView
             android:layout_width="20dp"
