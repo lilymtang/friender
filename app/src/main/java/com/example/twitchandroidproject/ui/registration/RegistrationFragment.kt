@@ -2,6 +2,7 @@ package com.example.twitchandroidproject.ui.registration
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -74,6 +75,9 @@ class RegistrationFragment : Fragment() {
                 Snackbar.make(requireView(), errorMessage, Snackbar.LENGTH_LONG).show()
             }
         })
+
+        binding.phoneText
+            .addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
         // connect toolbar with navigation graph to handle back button
         binding.toolbar

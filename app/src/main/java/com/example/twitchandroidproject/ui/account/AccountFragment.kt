@@ -3,6 +3,7 @@ package com.example.twitchandroidproject.ui.account
 import android.app.DatePickerDialog
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.Menu
@@ -167,6 +168,8 @@ class AccountFragment @Inject constructor() : Fragment() {
             }
         })
 
+        binding.phoneText
+            .addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
         return binding.root
     }
