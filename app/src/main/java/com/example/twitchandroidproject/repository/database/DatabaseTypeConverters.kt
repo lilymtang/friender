@@ -22,7 +22,11 @@ class DatabaseTypeConverters {
 
     @TypeConverter
     fun fromStringToListOfStrings(value: String?): List<String>? {
-        return value?.split(LIST_OF_STRINGS_SEPARATOR)
+        return when {
+            value == null -> null
+            value.isEmpty() -> listOf()
+            else -> value.split(LIST_OF_STRINGS_SEPARATOR)
+        }
     }
 
     // String <-> UserProfileType
