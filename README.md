@@ -1,6 +1,6 @@
 # Android Application Overview
 
-Find your next friends on Friender! This app allows you to browse the profiles of other users and search by keyword to find people with similar interests. Get started now by creating and editing your profile and adding hobbies and interests.
+Find your next friends on Friender! This app allows you to browse profiles and find people with similar interests. Get started now by creating a profile and adding your bio and interests.
 
 The application provides the following features:
 * Ability to create an account and sign in
@@ -69,5 +69,5 @@ Our app uses the MVVM architecture pattern and uses the following technologies:
 * Espresso for UI testing
 
 # Attributions
-- This app was built over 4 weeks by Lily Tang and Viktorija Urzika as part of the Onramp + Twitch Android Apprenticeship. 
+- This app was built over 4 weeks in March 2021 by Lily Tang and Viktorija Urzika as part of the Onramp + Twitch Android Apprenticeship. 
 - Our mentors, Joel Camargo Jr. and Bennett Lee, helped lead our daily standups as well as conduct sprint planning and code reviews. 
