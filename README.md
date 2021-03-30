@@ -52,7 +52,7 @@ Friender provides the following features:
 # Planning
 We began the 4 week project by creating a lofi prototype and setting up the project structure and choosing technologies. We divided responsibilities by screen, creating a Jira epic for each screen and tasks to break the epics down into smaller features. Viktorija was responsible for Registration, Login, and Account, and Lily was responsible for Discover, Friends, and Profile.
 
-<img width="1286" alt="Screen Shot 2021-03-29 at 11 56 47 PM" src="https://user-images.githubusercontent.com/79869473/112946770-c4986200-90ea-11eb-96ca-689cc001ce21.png">
+<img width="1296" alt="Screen Shot 2021-03-30 at 10 08 01 AM" src="https://user-images.githubusercontent.com/79869473/113028190-d8ba7e80-913f-11eb-8314-ab88edeb7530.png">
 
 # Architecture and Technologies
 
