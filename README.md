@@ -1,95 +1,62 @@
 # Android Application Overview
 
-This is a "Friender" application that allows users to find people around them, view user profiles and create nearby friends list.
+Find your next friends on Friender! This app allows you to browse the profiles of other users and search by keyword to find people with similar interests. Get started now by creating and editing your profile and adding hobbies and interests.
 
 The application provides the following features:
-* Ability to sign in and create an account
-* Ability to create a profile with the bio and the list of interests
-* Ability to see a list of users that are nearby 
-* Ability to create a list of friends
-* Ability to sort and filter nearby user list
+* Ability to create an account and sign in
+* Ability to create a profile with a bio and add interests
+* Ability to browse other users using Friender and view their profiles 
+* Ability to find users through search
+* Ability to add users to your friends list
 * Ability to update the status “Available to hangout” / “Not available to hangout”
 
-# Application Requirements Checklist
+# Features
+## Registration
+- The user journey begins on the login/registration screen. For new users, click Create New Account to begin the signup process.
+  - The form features live form validation including: age validation (users must be ages 16+), matching password validation, phone number formatting, and form completion validation (Get Started button is only active once all fields are copmleted.)
 
-## Front End
+<img src="https://user-images.githubusercontent.com/79869473/112940390-f0631a00-90e1-11eb-9ef1-6a9311b9e144.png" width="300"/> <img src="https://user-images.githubusercontent.com/79869473/112940325-d6c1d280-90e1-11eb-9c3a-b440ccbed937.png" width="300"/> <img src="https://user-images.githubusercontent.com/79869473/112940648-4a63df80-90e2-11eb-9c55-837924456022.png" width="300"/>
 
-| Requirement | Status | How Was Implemented |
-|:-----------:|:------:|:-------------------:|
-| XML | ✅ | All Fragments have corresponding xml files |
-| Usage of multiple Material Design Components | ✅ | Application is built using components provided by Android Material Design component library. Example components used in the app: Lists (Recycler View), Bottom Navigation, FAB, Switch and others. |
-| Animations | ✅  | |
-| ConstraintLayout | ✅ | |
-| RecyclerView | ✅ | The list of friends and list of other users nearby are displayed using Recycler View  |
-| Empty state corner case handling | ✅ | |
-| Loading and error screens | ✅  | |
+## Login
+- The login screen validates the login credentials against the existing accounts and displays the relevant error message.
 
-## Back End
+<img src="https://user-images.githubusercontent.com/79869473/112941285-2bb21880-90e3-11eb-9c59-131b38195e26.png" width="300"/> <img src="https://user-images.githubusercontent.com/79869473/112941315-3a98cb00-90e3-11eb-88d2-3c92030f7411.png" width="300"/>
 
-| Requirement | Status | How Was Implemented |
-|:-----------:|:------:|:-------------------:|
-| RxJava | ✅ | Room and Repository layer use RxJava |
-| Retrofit |  | |
-| Room | ✅ | Offline data is stored using Android Room persistence library |
-| Repository Pattern | ✅ | Repository is retrieving the data from 2 data source types (local database, local resources |
-| Geolocation API | ✅  | |
-| JSON (for stubbed friend objects) |  | |
-| *Testing* | ✅  | |
-| Testing fundamentals | ✅ | Provided basic set of Unit tests for Repository and Dao objects |
-| Mockito for ‘mocking’ objects |  | |
-| Espresso for UI testing | ✅  | |
+## Account Screen
+- The Account screen allows the currently logged in user to make changes to his or her profile and preview it
+- Users can select interests and featured interests (featured interests will show on the Discover screen)
+- The interests fields feature search-able dropdown lists of prepopulated interests
+  - Once an interest is selected, it will not show again in the current list or the other interests list  
+- After saving their profile, users can preview their updated profile by clicking the icon in the upper right hand corner
 
-# Application UI Design
+<img src="https://user-images.githubusercontent.com/79869473/112941643-cdd20080-90e3-11eb-9cbe-847409933218.png" width="300"/> <img src="https://user-images.githubusercontent.com/79869473/112942846-96645380-90e5-11eb-90c4-cb7914cf501c.gif" width="300"/>
+  
+## Discover Screen
+- The Discover screen allows users to browse other users and their profiles
+- The Discover screen cards show a preview of a user, which includes their name, age, and featured interests
+- Clicking on a user card will reveal the profile details, which includes additionally a user's live-updating distance from the current user, their bio, and both featured and non-featured interests
+- The user can add a friend from the profile details page
+- The user can search by keyword to find users more relevant to him or her
 
-Application UI is built using Android Material Design Component Library.
-
-## Home Screen
-
-Displays the list of nearby users 
-
-* Tapping on the list item allows to navigate to the User Profile screen 
-
-## User Profile Screen
-
-Displays information about selected user (other user or friend)
-
-* It is possible to add / remove profile from the friends list
-
-## Login Screen
-
-Provides ability to login into application to be able to save users as friends
-
-## User Registration Screen
-
-Provides ability to register new user for application. 
-
-* As application doesn't have backend integration, registration data is stored locally
-
-## User Account Screen
-
-Provides ability to view and edit logged in user profile
+<img src="https://user-images.githubusercontent.com/79869473/112948790-56a16a00-90ed-11eb-9ba7-2806799603fb.gif" width="300"/>
+<img src="https://user-images.githubusercontent.com/79869473/112948411-e5fa4d80-90ec-11eb-82d9-40522e3003ce.gif" width="300"/> 
 
 ## Friends Screen
+- The Friends screen allows users to view their friends
+- Users can swipe to delete friends as well as undo delete via the snackbar
+- The SMS button opens the SMS app with a pre-populated message and phone number
 
-Displays the list of friends for currently logged in user.
+<img src="https://user-images.githubusercontent.com/79869473/112944335-8b122780-90e7-11eb-9949-8c0ff1468c07.gif" width="300"/>
+<img src="https://user-images.githubusercontent.com/79869473/112945891-b5fd7b00-90e9-11eb-8c46-ec48e5b52cc8.gif" width="300"/>
 
-* Tap to navigate to friend's user profile 
+# Planning
+We began the 4 week project by creating a lofi prototype and setting up the project structure and choosing technologies. We divided responsibilities by screen, creating a Jira epic for each screen and tasks to break the epics down into smaller features. Viktorija was responsible for Registration, Login, and Account, and Lily was responsible for Discover, Friends, and Profile.
 
-## Overall Navigation
+<img width="1286" alt="Screen Shot 2021-03-29 at 11 56 47 PM" src="https://user-images.githubusercontent.com/79869473/112946770-c4986200-90ea-11eb-96ca-689cc001ce21.png">
 
-For overall navigation application is using Navigation Component + Navigation Graph as follows:
+# Architecture and Technologies
 
-**TBD: Navigation Diagram + Description**
-
-# High Level Architectural Overview
-
-Overall application is using MVVM architecture. The following diagram represents high level application architecture
-
-**TBD: Application Architecture Diagram + Description**
-
-## Technologies Used
-
-This application is 100% Kotlin based and demonstrates the use of the following technologies:
+Our app uses the MVVM architecture pattern and uses the following technologies:
 * [Material Design Component Library](https://material.io/develop/android) for building UI aligned with material design guidelines
 * [DataBinding](https://developer.android.com/topic/libraries/data-binding) for defining layouts in declarative format
 * [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) for navigation
@@ -99,3 +66,8 @@ This application is 100% Kotlin based and demonstrates the use of the following 
 * [Retrofit](https://square.github.io/retrofit/) for data retrieval
 * [Jackson](https://github.com/FasterXML/jackson) for JSON data deserialization
 * [Android Studio sample data resources](https://developer.android.com/studio/write/tool-attributes#toolssample_resources) to preview actual data in design time
+* Espresso for UI testing
+
+# Attributions
+- This app was built over 4 weeks by Lily Tang and Viktorija Urzika as part of the Onramp + Twitch Android Apprenticeship. 
+- Our mentors, Joel Camargo Jr. and Bennett Lee, helped lead our daily standups as well as conduct sprint planning and code reviews. 
