@@ -38,7 +38,7 @@ Friender provides the following features:
 - The user can add a friend from the profile details page
 - The user can search by keyword to find users more relevant to him or her
 
-<img src="https://user-images.githubusercontent.com/79869473/112948790-56a16a00-90ed-11eb-9ba7-2806799603fb.gif" width="300"/>
+<img src="https://user-images.githubusercontent.com/79869473/113029062-db69a380-9140-11eb-9f8f-163100bfb56e.gif" width="300"/>
 <img src="https://user-images.githubusercontent.com/79869473/112948411-e5fa4d80-90ec-11eb-82d9-40522e3003ce.gif" width="300"/> 
 
 ## Friends Screen
