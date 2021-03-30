@@ -1,13 +1,13 @@
-# Android Application Overview
+# Friender
 
-Find your next friends on Friender! This app allows you to browse profiles and find people with similar interests. Get started now by creating a profile and adding your bio and interests.
+Find your next friend on Friender! This app allows you to browse profiles and find people with similar interests. Get started now by creating a profile and adding your bio and interests.
 
-The application provides the following features:
+Friender provides the following features:
 * Ability to create an account and sign in
 * Ability to create a profile with a bio and add interests
 * Ability to browse other users using Friender and view their profiles 
 * Ability to find users through search
-* Ability to add users to your friends list
+* Ability to add to and remove users from your friends list
 * Ability to update the status “Available to hangout” / “Not available to hangout”
 
 # Features
